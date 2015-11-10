@@ -265,6 +265,10 @@ private JComboBox comboBox_29;
 		btnAadirMsClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
+				frame.setVisible(false);
+				frame.dispose();
+				Ventana_horarios window = new Ventana_horarios();
+				window.frame.setVisible(true);
 				
 			}
 		});
