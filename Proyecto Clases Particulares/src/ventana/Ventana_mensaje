@@ -1,0 +1,181 @@
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class Ventana_mensaje extends JFrame {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private boolean estaRelleno;
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextPane textPane1;
+	private String para;
+	private String departe;
+	private String asunto;
+	private String mensaje;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void crearFrame(){
+		Ventana_mensaje frame ;
+		frame= new Ventana_mensaje();
+		frame.setVisible(true);
+	}
+	public static void DestruirFrame(){
+	
+//		frame.setVisible(false);	
+//		frame.dispose(); 
+		
+	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					crearFrame();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Ventana_mensaje() {
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 602, 400);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Atras");
+		btnNewButton.addActionListener(new ActionListener() {
+		
+			public void actionPerformed(ActionEvent e) {
+		
+				contentPane.setVisible(false); //you can't see me!
+				DestruirFrame();
+			
+			}
+		});
+		btnNewButton.setBounds(45, 324, 219, 29);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Enviar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//estaRelleno = enviar();
+				
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date date = new Date();
+				System.out.println(dateFormat.format(date));
+				
+				if(estaRelleno==false){
+				
+					String message="Debe rellenar los campos";
+					System.out.println(message);
+				JOptionPane.showMessageDialog(contentPane, message,"¡Casillas vacías!", JOptionPane.ERROR_MESSAGE);
+				
+					
+					}
+					
+				else{								
+							para = textField.getText();
+							departe = textField_1.getText();
+							asunto = textField_2.getText();
+							mensaje = textPane1.getText();
+							System.out.println(para +departe+asunto+mensaje);
+							
+							//mensaje1 nuevoMensaje = new Mensaje();
+				}
+			}
+		});
+		btnNewButton_1.setBounds(346, 324, 206, 29);
+		contentPane.add(btnNewButton_1);
+		
+		JLabel lblDestinatario = new JLabel("Para");
+		lblDestinatario.setBounds(23, 19, 32, 16);
+		contentPane.add(lblDestinatario);
+		
+		textField = new JTextField();
+		textField.setBounds(113, 13, 315, 28);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("De parte de:");
+		lblNewLabel.setBounds(23, 59, 85, 16);
+		contentPane.add(lblNewLabel);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(113, 53, 315, 28);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblContenido = new JLabel("Contenido:");
+		lblContenido.setBounds(225, 122, 75, 16);
+		contentPane.add(lblContenido);
+		
+		JLabel lblAsunto = new JLabel("Asunto");
+		lblAsunto.setBounds(23, 99, 61, 16);
+		contentPane.add(lblAsunto);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(113, 93, 315, 28);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(45, 150, 507, 162);
+		contentPane.add(scrollPane);
+		
+		JTextPane textPane1 = new JTextPane();
+		scrollPane.setViewportView(textPane1);
+	}
+	public boolean enviar(){
+
+		para = textField.getText();
+		departe = textField_1.getText();
+		asunto = textField_2.getText();
+		mensaje = textPane1.getText();
+		
+		estaRelleno=true;
+		if(para.equals("")  ||departe.equals("") || asunto.equals("") || mensaje.equals("")){
+			
+			estaRelleno=false;		
+			System.out.println(estaRelleno);
+		}					
+		
+		System.out.println(estaRelleno);
+		
+		return estaRelleno;	   
+				  
+		}
+}
