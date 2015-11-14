@@ -37,7 +37,10 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 	private JTextField textField_Num;
 	private JTextField textField_Piso;
 	private JTextField textField_Ciudad;
-
+	private JTextField textField_Cont1;
+	private JTextField textField_Cont2;
+	private JTextField textField_UserName;
+	
 	private JComboBox comboDias;
 	private JComboBox comboMes;
 	private JComboBox comboAnyo;
@@ -45,6 +48,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 
 	private JButton cancelar_JButton;
 	private JButton guardar_JButton;
+
 
 	/**
 	 * Launch the application.
@@ -59,6 +63,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 			public void run() {
 				try {
 					Ventana_NewPersona frame = new Ventana_NewPersona();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,10 +76,11 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public Ventana_NewPersona() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana_NewPersona.class.getResource("/ventana/Logo1.JPG")));
 		setResizable(false);
 		setTitle("Nuevo Usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 346);
+		setBounds(100, 100, 522, 348);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,9 +96,6 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 		textField_DNI.setColumns(10);
 
 		JLabel lblApellidos = new JLabel("Apellidos  : ");
-
-		textField_Ape1 = new JTextField();
-		textField_Ape1.setColumns(10);
 
 		textField_Ape2 = new JTextField();
 		textField_Ape2.setColumns(10);
@@ -146,122 +149,167 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 		cancelar_JButton.addActionListener(this);
 		guardar_JButton = new JButton("Guardar");
 		guardar_JButton.addActionListener(this);
+		
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a : ");
+		
+		JLabel lblRepetirContr = new JLabel("Repetir :  ");
+		
+		textField_Cont2 = new JTextField();
+		textField_Cont2.setColumns(10);
+		
+		JLabel lblNombreDeUsuario = new JLabel("Nombre de Usuario : ");
+		
+		textField_UserName = new JTextField();
+		textField_UserName.setColumns(10);
+		
+		textField_Cont1 = new JTextField();
+		textField_Cont1.setColumns(10);
+		
+		textField_Ape1 = new JTextField();
+		textField_Ape1.setColumns(10);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblTelfono)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(textField_Tlf, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblNombre)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(textField_Nom, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblDni)
+											.addGap(18)
+											.addComponent(textField_DNI, 100, 100, 100)))
+									.addGap(18)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblApellidos)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_Ape1, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_Ape2, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
 										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addGroup(gl_contentPane.createSequentialGroup()
-														.addComponent(lblTelfono)
-														.addPreferredGap(ComponentPlacement.UNRELATED)
-														.addComponent(textField_Tlf, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
-														.addGroup(gl_contentPane.createSequentialGroup()
-																.addComponent(lblNombre)
-																.addPreferredGap(ComponentPlacement.UNRELATED)
-																.addComponent(textField_Nom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-																.addGroup(gl_contentPane.createSequentialGroup()
-																		.addComponent(lblDni)
-																		.addGap(18)
-																		.addComponent(textField_DNI, 100, 100, 100)))
-																		.addGap(18)
-																		.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-																				.addGroup(gl_contentPane.createSequentialGroup()
-																						.addComponent(lblTipoDeUsuario)
-																						.addPreferredGap(ComponentPlacement.UNRELATED)
-																						.addComponent(comboProf_Alum, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-																						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-																								.addGroup(gl_contentPane.createSequentialGroup()
-																										.addComponent(lblApellidos)
-																										.addPreferredGap(ComponentPlacement.UNRELATED)
-																										.addComponent(textField_Ape1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-																										.addPreferredGap(ComponentPlacement.UNRELATED)
-																										.addComponent(textField_Ape2, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE))
-																										.addGroup(gl_contentPane.createSequentialGroup()
-																												.addComponent(lblFechaDeNacimiento)
-																												.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-																												.addComponent(comboDias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(ComponentPlacement.RELATED)
-																												.addComponent(label, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(ComponentPlacement.RELATED)
-																												.addComponent(comboMes, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(ComponentPlacement.RELATED)
-																												.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(ComponentPlacement.RELATED)
-																												.addComponent(comboAnyo, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)))))
-																												.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-																														.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-																																.addGroup(gl_contentPane.createSequentialGroup()
-																																		.addComponent(cancelar_JButton, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-																																		.addGap(73)
-																																		.addComponent(guardar_JButton, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
-																																		.addGroup(gl_contentPane.createSequentialGroup()
-																																				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-																																						.addGroup(gl_contentPane.createSequentialGroup()
-																																								.addComponent(lblDireccin)
-																																								.addPreferredGap(ComponentPlacement.UNRELATED)
-																																								.addComponent(textField_Calle, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-																																								.addPreferredGap(ComponentPlacement.UNRELATED)
-																																								.addComponent(lblN)
-																																								.addPreferredGap(ComponentPlacement.RELATED))
-																																								.addGroup(gl_contentPane.createSequentialGroup()
-																																										.addComponent(lblCiudad)
-																																										.addPreferredGap(ComponentPlacement.RELATED)
-																																										.addComponent(textField_Ciudad, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)))
-																																										.addComponent(textField_Num, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-																																										.addGap(14)
-																																										.addComponent(lblPiso)))
-																																										.addPreferredGap(ComponentPlacement.RELATED)
-																																										.addComponent(textField_Piso, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-																																										.addGap(6)))
-																																										.addGap(88))
-				);
-		gl_contentPane.setVerticalGroup(
-				gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-						.addGap(33)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNombre)
-								.addComponent(textField_Nom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblApellidos)
-								.addComponent(textField_Ape1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_Ape2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGap(18)
-								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblFechaDeNacimiento)
-										.addComponent(comboDias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(label)
-										.addComponent(comboMes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(label_1)
-										.addComponent(comboAnyo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblDni)
-										.addComponent(textField_DNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblTelfono)
-												.addComponent(textField_Tlf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addGroup(gl_contentPane.createSequentialGroup()
 												.addComponent(lblTipoDeUsuario)
-												.addComponent(comboProf_Alum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-												.addGap(18)
-												.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-														.addComponent(lblDireccin)
-														.addComponent(textField_Calle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addComponent(lblPiso)
-														.addComponent(lblN)
-														.addComponent(textField_Num, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-														.addComponent(textField_Piso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-														.addGap(18)
-														.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-																.addComponent(lblCiudad)
-																.addComponent(textField_Ciudad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-																.addGap(45)
-																.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-																		.addComponent(cancelar_JButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-																		.addComponent(guardar_JButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
-																		.addContainerGap(45, Short.MAX_VALUE))
-				);
+												.addPreferredGap(ComponentPlacement.UNRELATED)
+												.addComponent(comboProf_Alum, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+												.addGroup(gl_contentPane.createSequentialGroup()
+													.addComponent(lblFechaDeNacimiento)
+													.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+													.addComponent(comboDias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addComponent(label, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addComponent(comboMes, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addComponent(comboAnyo, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+													.addGap(10))
+												.addGroup(gl_contentPane.createSequentialGroup()
+													.addGap(180)
+													.addComponent(lblCiudad)
+													.addPreferredGap(ComponentPlacement.RELATED)
+													.addComponent(textField_Ciudad, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))))))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addComponent(cancelar_JButton, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addComponent(lblDireccin)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(textField_Calle, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(lblN)))
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_Num, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(lblPiso)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_Piso, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGap(74)
+											.addComponent(guardar_JButton, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))))
+							.addGap(37))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblContrasea)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_Cont1, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblRepetirContr, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_Cont2, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(90)
+					.addComponent(lblNombreDeUsuario)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(textField_UserName)
+					.addGap(138))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(17)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNombreDeUsuario, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_UserName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblContrasea, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_Cont1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRepetirContr)
+						.addComponent(textField_Cont2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNombre)
+						.addComponent(textField_Nom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblApellidos)
+						.addComponent(textField_Ape2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textField_Ape1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblFechaDeNacimiento)
+						.addComponent(comboDias, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label)
+						.addComponent(comboMes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label_1)
+						.addComponent(comboAnyo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblDni)
+						.addComponent(textField_DNI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblTelfono)
+						.addComponent(textField_Tlf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTipoDeUsuario)
+						.addComponent(comboProf_Alum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDireccin)
+						.addComponent(textField_Calle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblN)
+						.addComponent(textField_Num, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPiso)
+						.addComponent(textField_Piso, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCiudad)
+						.addComponent(textField_Ciudad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(35)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(cancelar_JButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addComponent(guardar_JButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(14, Short.MAX_VALUE))
+		);
 		contentPane.setLayout(gl_contentPane);
 	}
 
@@ -269,86 +317,117 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 		JButton botonPressed = (JButton)arg0.getSource();
 		String fecha = "";
 		String direccion = "";
+		int telefono = 0;
+		String password = "";
+		
 		if(botonPressed == cancelar_JButton){
 			this.dispose();
 		}else if(botonPressed == guardar_JButton){
 			
+			// Validaciones:
+			// Nombre de usuario (sin espacios)
+			// Nombre (solo letras, sin espacios)
+			// Apellidos (solo letras)
+			// Ciudad (solo letras)
+			// numero y piso (solo nums)
+			// DNI (8 nums y una letra, sin espacios)
+			// Contraseñas
+			if(textField_Cont1.getText().equals(textField_Cont2.getText())){
+				password = textField_Cont1.getText();
+			}else{
+				JOptionPane.showMessageDialog(this, "Las constraseñas no coinciden", "¡Constraseñas diferentes!", JOptionPane.ERROR_MESSAGE);
+			}
 			if(comboProf_Alum.getSelectedItem().toString().equals("Alumno")){				
 				// Se comprueba que todas las casillas esten con texto, sino se saca un mensaje de error
-				if(textField_Nom.getText().equals("") || textField_DNI.getText().equals("") || textField_Ape1.getText().equals("") || textField_Ape2.getText().equals("") 
-						|| textField_Tlf.getText().equals("") || textField_Calle.getText().equals("") || textField_Num.getText().equals("") || textField_Piso.getText().equals("") 
+				if(textField_UserName.getText().equals("") || textField_Cont1.getText().equals("") || textField_Cont2.getText().equals("") 
+						|| textField_Nom.getText().equals("") || textField_DNI.getText().equals("") || textField_Ape1.getText().equals("") || textField_Ape2.getText().equals("") 
+						|| (textField_Tlf.getText().length()!=9) || textField_Calle.getText().equals("") || textField_Num.getText().equals("") || textField_Piso.getText().equals("") 
 						|| textField_Ciudad.getText().equals("")){
 
 					String message;
 					String casilV = "";
+					if(textField_UserName.getText().equals(""))
+						casilV = casilV + " \n - Nombre de usuario";
+					if(textField_Cont1.getText().equals(""))
+						casilV = casilV + " \n - Contraseña";
+					if(textField_Cont2.getText().equals(""))
+						casilV = casilV + " \n - Repetir contraseña";
 					if(textField_Nom.getText().equals(""))
-						casilV = casilV + " \n -Nombre";
+						casilV = casilV + " \n - Nombre";
 					if(textField_DNI.getText().equals(""))
-						casilV = casilV + " \n -DNI";
+						casilV = casilV + " \n - DNI";
 					if(textField_Ape1.getText().equals(""))
-						casilV = casilV + " \n -Apellido 1";
+						casilV = casilV + " \n - Apellido 1";
 					if(textField_Ape2.getText().equals(""))
-						casilV = casilV + " \n -Apellido 2";
+						casilV = casilV + " \n - Apellido 2";
 					if(textField_Tlf.getText().equals(""))
-						casilV = casilV + " \n -Teléfono";
+						casilV = casilV + " \n - Teléfono";
 					if(textField_Calle.getText().equals(""))
-						casilV = casilV + " \n -Calle";
+						casilV = casilV + " \n - Calle";
 					if(textField_Num.getText().equals(""))
-						casilV = casilV + " \n -Nº";
+						casilV = casilV + " \n - Nº";
 					if(textField_Piso.getText().equals(""))
-						casilV = casilV + " \n -Piso";
+						casilV = casilV + " \n - Piso";
 					if(textField_Ciudad.getText().equals(""))
-						casilV = casilV + " \n -Ciudad";
+						casilV = casilV + " \n - Ciudad";
 					// mensaje de error
-					message = ("La(s) casilla(s):" + casilV + "\nEstá(n) vacía(s), por favor rellenela(s).");
+					message = ("La(s) casilla(s):" + casilV + "\nEstá(n) vacía(s) o mal introducida(s), por favor rellenela(s).");
 					JOptionPane.showMessageDialog(this, message, "¡Casillas vacías!", JOptionPane.ERROR_MESSAGE);
 				}else{
 					// Hay que Cojer todos los datos y guardarlos como nuevo Alumno
 					fecha = comboDias.getSelectedItem().toString() + "/" + comboMes.getSelectedItem().toString() + "/" + comboAnyo.getSelectedItem().toString();
 					direccion = textField_Calle.getText() + textField_Num.getText() + textField_Piso.getText();
-					Persona nuevoAlumno = new Persona(textField_DNI.getText(), textField_Nom.getText(), textField_Ape1.getText(), textField_Ape2.getText(),
-							textField_Tlf.getText(), direccion, textField_Ciudad.getText(), fecha, false );
+					telefono = Integer.parseInt(textField_Tlf.getText());
+					Persona nuevoAlumno = new Persona(textField_UserName.getText(), password, textField_DNI.getText(), textField_Nom.getText(), textField_Ape1.getText(), textField_Ape2.getText(),
+							telefono, direccion, textField_Ciudad.getText(), fecha, false );
 					/* Cuando se cree 
 					 * Ventana_NewAlumno a = new Ventana_NewProfesor(nuevoAlumno);
 					 */				
-					this.setVisible(false);
+					this.dispose();
 					}
 
 			}else if(comboProf_Alum.getSelectedItem().toString().equals("Profesor")){				
 				// Se comprueba que todas las casillas esten con texto, sino se saca un mensaje de error
-				if(textField_Nom.getText().equals("") || textField_DNI.getText().equals("") || textField_Ape1.getText().equals("") || textField_Ape2.getText().equals("") 
-						|| textField_Tlf.getText().equals("") || textField_Calle.getText().equals("") || textField_Num.getText().equals("") || textField_Piso.getText().equals("") 
+				if(textField_UserName.getText().equals("") || textField_Cont1.getText().equals("") || textField_Cont2.getText().equals("") 
+						|| textField_Nom.getText().equals("") || textField_DNI.getText().equals("") || textField_Ape1.getText().equals("") || textField_Ape2.getText().equals("") 
+						|| (textField_Tlf.getText().length()!=9) || textField_Calle.getText().equals("") || textField_Num.getText().equals("") || textField_Piso.getText().equals("") 
 						|| textField_Ciudad.getText().equals("")){
 					String message;
 					String casilV = "";
+					if(textField_UserName.getText().equals(""))
+						casilV = casilV + " \n - Nombre de usuario";
+					if(textField_Cont1.getText().equals(""))
+						casilV = casilV + " \n - Contraseña";
+					if(textField_Cont2.getText().equals(""))
+						casilV = casilV + " \n - Repetir contraseña";
 					if(textField_Nom.getText().equals(""))
-						casilV = casilV + " \n -Nombre";
+						casilV = casilV + " \n - Nombre";
 					if(textField_DNI.getText().equals(""))
-						casilV = casilV + " \n -DNI";
+						casilV = casilV + " \n - DNI";
 					if(textField_Ape1.getText().equals(""))
-						casilV = casilV + " \n -Apellido 1";
+						casilV = casilV + " \n - Apellido 1";
 					if(textField_Ape2.getText().equals(""))
-						casilV = casilV + " \n -Apellido 2";
+						casilV = casilV + " \n - Apellido 2";
 					if(textField_Tlf.getText().equals(""))
-						casilV = casilV + " \n -Teléfono";
+						casilV = casilV + " \n - Teléfono";
 					if(textField_Calle.getText().equals(""))
-						casilV = casilV + " \n -Calle";
+						casilV = casilV + " \n - Calle";
 					if(textField_Num.getText().equals(""))
-						casilV = casilV + " \n -Nº";
+						casilV = casilV + " \n - Nº";
 					if(textField_Piso.getText().equals(""))
-						casilV = casilV + " \n -Piso";
+						casilV = casilV + " \n - Piso";
 					if(textField_Ciudad.getText().equals(""))
-						casilV = casilV + " \n -Ciudad";
+						casilV = casilV + " \n - Ciudad";
 					// mensaje de error
-					message = ("La(s) casilla(s):" + casilV + "\nEstá(n) vacía(s), por favor rellenela(s).");
+					message = ("La(s) casilla(s):" + casilV + "\nEstá(n) vacía(s) o mal introducida(s), por favor rellenela(s).");
 					JOptionPane.showMessageDialog(this, message, "¡Casillas vacías!", JOptionPane.ERROR_MESSAGE);
 
 				}else{
 					// Hay que Cojer todos los datos y guardarlos como nuevo Profesor
-					Persona nuevoProfesor = new Persona(textField_DNI.getText(), textField_Nom.getText(), textField_Ape1.getText(), textField_Ape2.getText(),
-							textField_Tlf.getText(), direccion, textField_Ciudad.getText(), fecha, true );
-					Ventana_NewProfesor a = new Ventana_NewProfesor(nuevoProfesor);		
-					this.setVisible(false);
+					Persona nuevoProfesor = new Persona(textField_UserName.getText(), password, textField_DNI.getText(), textField_Nom.getText(), textField_Ape1.getText(), textField_Ape2.getText(),
+							telefono, direccion, textField_Ciudad.getText(), fecha, true );
+					Ventana_NewProfesor vPorfesor = new Ventana_NewProfesor(nuevoProfesor);		
+					this.dispose();
 				}
 			}
 		}

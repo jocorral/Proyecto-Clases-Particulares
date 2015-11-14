@@ -17,6 +17,7 @@ import javax.swing.JSplitPane;
 
 import java.awt.FlowLayout;
 import java.awt.TextArea;
+import java.awt.Toolkit;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
@@ -46,16 +47,18 @@ import objetos.Profesor;
 
 import java.awt.Label;
 import java.awt.Button;
+import javax.swing.JCheckBox;
 
 
-public class Ventana_NewProfesor {
+public class Ventana_NewProfesor{
 
 	private Persona persona;
 	private JFrame frame;
-	private JTextField textField;
-	private JSlider slider1;
-	private JTextPane txtpnG;
 	private  boolean estaRelleno ;
+	private JTextField textField;
+	private JTextPane textPane;
+	private JSlider slider;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -65,6 +68,7 @@ public class Ventana_NewProfesor {
 				try {
 					Persona a = new Persona();
 					Ventana_NewProfesor window = new Ventana_NewProfesor(a);
+					window.frame.setLocationRelativeTo(null);
 					window.frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -89,7 +93,8 @@ public class Ventana_NewProfesor {
 	private void initialize() {
 	
 		frame = new JFrame();
-		frame.setBounds(100, 100, 683, 464);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana_NewPersona.class.getResource("/ventana/Logo1.JPG")));
+		frame.setBounds(100, 100, 694, 466);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -102,18 +107,13 @@ public class Ventana_NewProfesor {
 		});
 		btnAtras.setBounds(106, 386, 117, 29);
 		frame.getContentPane().add(btnAtras);
-		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+		JButton siguiente_JButton = new JButton("Guardar");
+		siguiente_JButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {			
 				estaRelleno = guardar();
-				if(estaRelleno==false){
-					
-					String message="Debe rellenar los campos";
-					
+				if(estaRelleno==false){			
+					String message="Debe rellenar los campos";					
 					JOptionPane.showMessageDialog(frame, message, "¡Casillas vacías!", JOptionPane.ERROR_MESSAGE);
-					
 					}
 				else{
 					int n = 100;
@@ -122,70 +122,70 @@ public class Ventana_NewProfesor {
 					//n=(int)slider.getValue(); 
 					//esto es lo unico que me casca que no consigo obtner el valor del slider ****************
 					//n= slider1.getValue();
-					textoPob = textField.getText();
-					textoCurriculum = txtpnG.getText();
-					Profesor nuevoProfesor = new Profesor(persona, n,textoCurriculum);
+					textoCurriculum = textPane.getText();
+					Profesor nuevoProfesor = new Profesor(persona, n, textoCurriculum);
+					Ventana_Login login = new Ventana_Login();
+					login.setVisible(true);
 					}
 			}
 		});
 		
-		btnGuardar.setBounds(397, 386, 117, 29);
-		frame.getContentPane().add(btnGuardar);
+		siguiente_JButton.setBounds(397, 386, 117, 29);
+		frame.getContentPane().add(siguiente_JButton);
 		
-		JSlider slider = new JSlider();
-		slider.setMaximum(40);
-		slider.setSnapToTicks(true);
-		slider.setPaintTicks(true);
-		slider.setMajorTickSpacing(5);
+		 slider = new JSlider();
+		 slider.setSnapToTicks(true);
+		 slider.setPaintTicks(true);
+		 slider.setPaintLabels(true);
+		 slider.setMinimum(10);
+		slider.setMaximum(30);
+		slider.setMajorTickSpacing(1);
 		slider.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		slider.setPaintLabels(true);
 		slider.setValue(0);
 		
 		slider.getValue();		//esto es lo unico que me casca que no consigo obtner el valor del slider ****************
 		
-		slider.setBounds(177, 134, 473, 42);
+		slider.setBounds(156, 124, 494, 42);
 		frame.getContentPane().add(slider);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(53, 208, 597, 12);
-		frame.getContentPane().add(separator);
-		
-		textField = new JTextField();
-		textField.setBounds(177, 59, 333, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		textField.getText();
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(45, 88, 605, 16);
+		separator_2.setBounds(40, 97, 605, 16);
 		frame.getContentPane().add(separator_2);
 		
 		JLabel lblRellenarCamposProfesor = new JLabel("Rellenar campos profesor");
 		lblRellenarCamposProfesor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRellenarCamposProfesor.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblRellenarCamposProfesor.setBounds(203, 6, 251, 26);
+		lblRellenarCamposProfesor.setBounds(202, 29, 251, 26);
 		frame.getContentPane().add(lblRellenarCamposProfesor);
-		
-		JLabel lblPoblacin = new JLabel("Población");
-		lblPoblacin.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblPoblacin.setBounds(45, 60, 84, 16);
-		frame.getContentPane().add(lblPoblacin);
 		
 		JLabel lblPreciohora = new JLabel("Precio/hora");
 		lblPreciohora.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblPreciohora.setBounds(45, 134, 100, 16);
+		lblPreciohora.setBounds(46, 124, 100, 16);
 		frame.getContentPane().add(lblPreciohora);
 		
 		JLabel lblCurriculumVitae = new JLabel("Curriculum vitae");
 		lblCurriculumVitae.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblCurriculumVitae.setBounds(45, 242, 142, 20);
+		lblCurriculumVitae.setBounds(53, 250, 142, 20);
 		frame.getContentPane().add(lblCurriculumVitae);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(184, 232, 435, 149);
+		scrollPane.setBounds(253, 244, 374, 119);
 		frame.getContentPane().add(scrollPane);
 		
-		txtpnG = new JTextPane();
-		scrollPane.setViewportView(txtpnG);
+		 textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
+		
+		textField = new JTextField();
+		textField.setBounds(493, 177, 86, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JCheckBox chckbxOtro = new JCheckBox("Otro:");
+		chckbxOtro.setBounds(418, 178, 65, 23);
+		frame.getContentPane().add(chckbxOtro);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(40, 208, 605, 16);
+		frame.getContentPane().add(separator);
 	
 	}
 	public boolean guardar(){
@@ -195,18 +195,14 @@ public class Ventana_NewProfesor {
 		//n=(int)slider.getValue(); 
 		//esto es lo unico que me casca que no consigo obtner el valor del slider ****************
 		//n= slider1.getValue();
-		textoPob = textField.getText();
-		textoCurriculum = txtpnG.getText();
+		textoCurriculum = textPane.getText();
 		estaRelleno=true;
-		if(n == 0  || textoPob.equals("") || textoCurriculum.equals("")){
+		if(n == 0  || textoCurriculum.equals("")){
 			estaRelleno=false;		
 			System.out.println(estaRelleno);
 		}					
 		System.out.println("El slider siempre es 0 no te preocupes");
 		System.out.println("Precio/Hora: "+n);
-
-		System.out.println("Población: "+textoPob);
-		
 		System.out.println("Curriculum: "+textoCurriculum);
 		System.out.println(estaRelleno);
 		

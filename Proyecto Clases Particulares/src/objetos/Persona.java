@@ -10,11 +10,13 @@ import javax.swing.JTextField;
 public class Persona {
 	final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	
+	private String userName;
+	private String password;
 	private String dni;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
-	private String telefono; // POSTERIORMENTE CAMBIAR A INT O A LONG
+	private int telefono; // POSTERIORMENTE CAMBIAR A INT O A LONG
 	private String direccion;
 	private String ciudad;
 	private Date fechaNacimiento;
@@ -34,8 +36,10 @@ public class Persona {
 	
 	public Persona(){}
 	
-	public Persona( String dni, String nombre, String apellido1, String apellido2, String telefono,
+	public Persona( String userName, String password, String dni, String nombre, String apellido1, String apellido2, int telefono,
 	String direccion, String ciudad, String fechaNacimiento, boolean alumnoProfesor ){
+		this.userName = userName;
+		this.password = password;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
