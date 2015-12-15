@@ -29,7 +29,7 @@ public class Ventana_Asignaturas extends JFrame{
 		setTitle("Añadir Asignaturas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 417, 430);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana_Asignaturas.class.getResource("/ventana/Logo1.JPG")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana_Asignaturas.class.getResource("/imagenes/Logo1.JPG")));
 		getContentPane().setLayout(null);
 		
 		panel_Colegio = new JPanel();

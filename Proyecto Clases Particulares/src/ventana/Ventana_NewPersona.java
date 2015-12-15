@@ -76,7 +76,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public Ventana_NewPersona() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana_NewPersona.class.getResource("/ventana/Logo1.JPG")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana_NewPersona.class.getResource("/imagenes/Logo1.JPG")));
 		setResizable(false);
 		setTitle("Nuevo Usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -326,7 +326,15 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 			
 			// Validaciones:
 			// Nombre de usuario (sin espacios)
+			if(textField_UserName.getText().contains(" ")){
+				JOptionPane.showMessageDialog(this, "El campo de usuario no puede contener espacios", "ERROR Username", JOptionPane.ERROR_MESSAGE);
+				textField_UserName.setText("");
+			}
 			// Nombre (solo letras, sin espacios)
+			if(textField_Nom.getText().contains(" ")){
+				JOptionPane.showMessageDialog(this, "El campo de Nombre no puede contener espacios", "ERROR Nombre", JOptionPane.ERROR_MESSAGE);
+				textField_Nom.setText("");
+			}
 			// Apellidos (solo letras)
 			// Ciudad (solo letras)
 			// numero y piso (solo nums)
@@ -424,6 +432,9 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 
 				}else{
 					// Hay que Cojer todos los datos y guardarlos como nuevo Profesor
+					fecha = comboDias.getSelectedItem().toString() + "/" + comboMes.getSelectedItem().toString() + "/" + comboAnyo.getSelectedItem().toString();
+					direccion = textField_Calle.getText() + textField_Num.getText() + textField_Piso.getText();
+					telefono = Integer.parseInt(textField_Tlf.getText());
 					Persona nuevoProfesor = new Persona(textField_UserName.getText(), password, textField_DNI.getText(), textField_Nom.getText(), textField_Ape1.getText(), textField_Ape2.getText(),
 							telefono, direccion, textField_Ciudad.getText(), fecha, true );
 					Ventana_NewProfesor vPorfesor = new Ventana_NewProfesor(nuevoProfesor);		

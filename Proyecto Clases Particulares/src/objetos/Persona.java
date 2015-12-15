@@ -1,15 +1,13 @@
 package objetos;
 
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import javax.swing.JTextField;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Persona {
-	final DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-	
 	private String userName;
 	private String password;
 	private String dni;
@@ -20,24 +18,14 @@ public class Persona {
 	private String direccion;
 	private String ciudad;
 	private Date fechaNacimiento;
+	private ArrayList<Mensaje> bandejaEntrada = new ArrayList<Mensaje>();
+	private ArrayList<Mensaje> enviados = new ArrayList<Mensaje>();
 	private boolean alumnoProfesor; // Alumno = false y Profesor = true
-	/**
-	 * Método que convierte el String que le pasa por parámetro en Date.
-	 * @param fecha Se tratará de un String en el formato "dd/MM/yyyy".
-	 * @returnm La fecha en formato Date ("dd/MM/yyyy").
-	 */
-	public Date conseguirFecha(String fecha){
-		Date fechaNcto = new Date(12045628);
-		try{
-			fechaNcto = (Date) df.parse(fecha);
-		}catch(ParseException e){}
-		return fechaNcto;
-	}
-	
+
 	public Persona(){}
-	
+
 	public Persona( String userName, String password, String dni, String nombre, String apellido1, String apellido2, int telefono,
-	String direccion, String ciudad, String fechaNacimiento, boolean alumnoProfesor ){
+			String direccion, String ciudad, String fechaNacimiento, boolean alumnoProfesor ){
 		this.userName = userName;
 		this.password = password;
 		this.dni = dni;
@@ -49,5 +37,43 @@ public class Persona {
 		this.ciudad = ciudad;
 		this.fechaNacimiento = conseguirFecha(fechaNacimiento);
 		this.alumnoProfesor = alumnoProfesor;
+	}
+	/**
+	 * Método que convierte el String que le pasa por parámetro en Date.
+	 * @param fecha Se tratará de un String en el formato "dd/MM/yyyy".
+	 * @returnm La fecha en formato Date ("dd/MM/yyyy").
+	 */
+	public Date conseguirFecha(String fecha){
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaNcto = null;
+		try{
+			if(fechaNcto instanceof Date){
+				fechaNcto = (Date) df.parse(fecha);
+			}
+		}catch(ParseException e){}
+		return fechaNcto;
+	}
+	
+	public int getEdad(){
+		Calendar fechaNacimientoDiaMesAnyo = Calendar.getInstance();
+		fechaNacimientoDiaMesAnyo.setTime(this.fechaNacimiento);
+		Calendar fechaNacimiento = new GregorianCalendar(fechaNacimientoDiaMesAnyo.get(Calendar.YEAR), fechaNacimientoDiaMesAnyo.get(Calendar.MONTH), fechaNacimientoDiaMesAnyo.get(Calendar.DAY_OF_MONTH) );
+		Calendar fechaActual = Calendar.getInstance();  
+		int edad = fechaActual.get(Calendar.YEAR) - fechaNacimiento.get(Calendar.YEAR);  
+		if (fechaActual.get(Calendar.MONTH) < fechaNacimiento.get(Calendar.MONTH)) {
+			edad--;  
+		} else if (fechaActual.get(Calendar.MONTH) == fechaNacimiento.get(Calendar.MONTH)
+				&& fechaActual.get(Calendar.DAY_OF_MONTH) < fechaNacimiento.get(Calendar.DAY_OF_MONTH)) {
+			edad--;  
+		}
+		return edad;
+	}
+	public ArrayList<Mensaje> getBandejaEntrada() {
+		return bandejaEntrada;
+	}
+	
+
+	public ArrayList<Mensaje> getEnviados() {
+		return enviados;
 	}
 }
