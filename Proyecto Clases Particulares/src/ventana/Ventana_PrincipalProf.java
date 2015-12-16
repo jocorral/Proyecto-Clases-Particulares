@@ -23,26 +23,30 @@ import javax.swing.JTextField;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
+import java.awt.Font;
+
 public class Ventana_PrincipalProf extends JFrame{
-	private JTextField txt_Ciudad;
-	private JTextField txt_Telefono;
-	private JTextField txt_Num;
-	private JTextField txt_Piso;
-	private JTextField txt_Calle;
-	private JTextField txt_Apellido1;
-	private JTextField txt_Nombre;
-	private JTextField txt_Apellido2;
-	private JTextField txt_Para;
-	private JTextField txt_DParteD;
-	private JTextField txt_Asunto;
 	
+	private JPanel panelInicio;
+	private JPanel panelMensajes;
 	private JPanel panel_Botones;
-	private JPanel panelMensaje;
 	private JPanel panelPerfil;
+	private JTextField txt_Telefono;
+	private JTextField txt_Piso;
+	private JTextField txt_Num;
+	private JTextField txt_Calle;
+	private JTextField txt_Ciudad;
+	private JTextField txt_Apellido1;
+	private JTextField txt_Apellido2;
+	private JTextField txt_Nombre;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField;
 	
 	public Ventana_PrincipalProf(String userName) {
 		setResizable(false);
@@ -63,18 +67,26 @@ public class Ventana_PrincipalProf extends JFrame{
 		pefil_JBut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ventana_PrincipalProf.this.panelPerfil.setVisible(true);
-				Ventana_PrincipalProf.this.panelMensaje.setVisible(false);
+				Ventana_PrincipalProf.this.panelInicio.setVisible(false);
+				Ventana_PrincipalProf.this.panelMensajes.setVisible(false);
 			}
 		});
 		
 		JButton inicio_JBut = new JButton("Inicio");
+		inicio_JBut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ventana_PrincipalProf.this.panelInicio.setVisible(true);
+				Ventana_PrincipalProf.this.panelPerfil.setVisible(false);
+				Ventana_PrincipalProf.this.panelMensajes.setVisible(false);
+			}
+		});
 		panel_Botones.add(inicio_JBut);
 		panel_Botones.add(pefil_JBut);
 		
 		JButton newMes_JBut = new JButton("Nuevo Mensaje");
 		newMes_JBut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Ventana_PrincipalProf.this.panelMensaje.setVisible(true);
+				Ventana_PrincipalProf.this.panelMensajes.setVisible(true);
 				Ventana_PrincipalProf.this.panelPerfil.setVisible(false);
 			}
 		});
@@ -117,53 +129,80 @@ public class Ventana_PrincipalProf extends JFrame{
 		JLayeredPane layeredPane = new JLayeredPane();
 		splitPane.setRightComponent(layeredPane);
 		
-		panelMensaje = new JPanel();
-		panelMensaje.setVisible(false);
-		panelMensaje.setBounds(0, 0, 469, 352);
-		layeredPane.add(panelMensaje);
-		panelMensaje.setLayout(null);
+		panelMensajes = new JPanel();
+		panelMensajes.setVisible(false);
+		panelMensajes.setBounds(0, 0, 469, 352);
+		layeredPane.add(panelMensajes);
+		panelMensajes.setLayout(null);
 		
-		JLabel lblPara = new JLabel("Para: ");
-		lblPara.setBounds(38, 17, 40, 16);
-		panelMensaje.add(lblPara);
+		JLabel label_1 = new JLabel("De parte de: ");
+		label_1.setBounds(39, 30, 85, 16);
+		panelMensajes.add(label_1);
 		
-		txt_Para = new JTextField();
-		txt_Para.setBounds(119, 11, 264, 28);
-		txt_Para.setColumns(10);
-		panelMensaje.add(txt_Para);
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(120, 24, 264, 28);
+		panelMensajes.add(textField_1);
 		
-		JLabel lblDParteD = new JLabel("De parte de: ");
-		lblDParteD.setBounds(38, 57, 85, 16);
-		panelMensaje.add(lblDParteD);
+		JLabel label_2 = new JLabel("Asunto: ");
+		label_2.setBounds(39, 110, 61, 16);
+		panelMensajes.add(label_2);
 		
-		txt_DParteD = new JTextField();
-		txt_DParteD.setBounds(119, 51, 264, 28);
-		txt_DParteD.setColumns(10);
-		panelMensaje.add(txt_DParteD);
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(120, 104, 264, 28);
+		panelMensajes.add(textField_2);
 		
-		JLabel lblAsunto = new JLabel("Asunto: ");
-		lblAsunto.setBounds(38, 97, 61, 16);
-		panelMensaje.add(lblAsunto);
+		JLabel label_3 = new JLabel("Contenido: ");
+		label_3.setBounds(189, 139, 85, 22);
+		panelMensajes.add(label_3);
 		
-		txt_Asunto = new JTextField();
-		txt_Asunto.setBounds(119, 91, 264, 28);
-		txt_Asunto.setColumns(10);
-		panelMensaje.add(txt_Asunto);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(25, 172, 418, 105);
+		panelMensajes.add(scrollPane);
 		
-		JLabel lblContenido = new JLabel("Contenido: ");
-		lblContenido.setBounds(188, 126, 85, 22);
-		panelMensaje.add(lblContenido);
+		JButton button = new JButton("Enviar");
+		button.setBounds(120, 297, 206, 29);
+		panelMensajes.add(button);
 		
-		JScrollPane scrollPane_Contenido = new JScrollPane();
-		scrollPane_Contenido.setBounds(24, 159, 418, 105);
-		panelMensaje.add(scrollPane_Contenido);
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(120, 65, 264, 28);
+		panelMensajes.add(textField);
 		
-		JTextPane txt_Contenido = new JTextPane();
-		scrollPane_Contenido.setViewportView(txt_Contenido);
+		JLabel label = new JLabel("Para: ");
+		label.setBounds(39, 71, 40, 16);
+		panelMensajes.add(label);
 		
-		JButton enviar_JBut = new JButton("Enviar");
-		enviar_JBut.setBounds(119, 284, 206, 29);
-		panelMensaje.add(enviar_JBut);
+		panelInicio = new JPanel();
+		panelInicio.setBounds(0, 0, 469, 352);
+		layeredPane.add(panelInicio);
+		panelInicio.setLayout(null);
+		
+		JLabel lblClasesDelDia = new JLabel("Clases del dia");
+		lblClasesDelDia.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblClasesDelDia.setFocusTraversalPolicyProvider(true);
+		lblClasesDelDia.setBounds(163, 28, 129, 50);
+		panelInicio.add(lblClasesDelDia);
+		
+		JButton calendario_JBut = new JButton("Calendario");
+		calendario_JBut.setBounds(23, 300, 89, 23);
+		calendario_JBut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ventana_Calendario calendario = new Ventana_Calendario();
+				calendario.setVisible(true);
+				calendario.setLocationRelativeTo(null);
+			}
+		});
+		panelInicio.add(calendario_JBut);
+		
+		JButton anyadirClase_JBut = new JButton("A\u00F1adir Clase");
+		anyadirClase_JBut.setBounds(173, 300, 108, 23);
+		panelInicio.add(anyadirClase_JBut);
+		
+		JButton borrar_JBut = new JButton("Borrar");
+		borrar_JBut.setBounds(349, 300, 89, 23);
+		panelInicio.add(borrar_JBut);
 		
 		panelPerfil = new JPanel();
 		panelPerfil.setVisible(false);
@@ -171,94 +210,93 @@ public class Ventana_PrincipalProf extends JFrame{
 		layeredPane.add(panelPerfil);
 		panelPerfil.setLayout(null);
 		
-		JLabel lblNombre = new JLabel("Nombre: ");
-		lblNombre.setBounds(39, 44, 70, 18);
-		panelPerfil.add(lblNombre);
+		JLabel lblFotoP = new JLabel("");
+		lblFotoP.setIcon(new ImageIcon(Ventana_PrincipalProf.class.getResource("/imagenes/Perfil.png")));
+		lblFotoP.setBounds(44, 45, 124, 166);
+		panelPerfil.add(lblFotoP);
 		
-		JLabel lblApellidos = new JLabel("Apellidos: ");
-		lblApellidos.setBounds(39, 84, 70, 18);
-		panelPerfil.add(lblApellidos);
+		JButton editarP_JBut = new JButton("");
+		editarP_JBut.setIcon(new ImageIcon(Ventana_PrincipalProf.class.getResource("/imagenes/iconoEditar.png")));
+		editarP_JBut.setBounds(44, 217, 89, 23);
+		panelPerfil.add(editarP_JBut);
 		
-		JLabel lblCalle = new JLabel("Calle: ");
-		lblCalle.setBounds(39, 124, 70, 18);
-		panelPerfil.add(lblCalle);
-		
-		JButton editar_JBut = new JButton("Editar");
-		editar_JBut.setBounds(316, 299, 89, 23);
+		JButton editar_JBut = new JButton("");
+		editar_JBut.setIcon(new ImageIcon(Ventana_PrincipalProf.class.getResource("/imagenes/iconoEditar.png")));
+		editar_JBut.setBounds(239, 286, 89, 23);
 		panelPerfil.add(editar_JBut);
-		
-		JLabel lblPiso = new JLabel("Piso: ");
-		lblPiso.setBounds(161, 165, 47, 18);
-		panelPerfil.add(lblPiso);
-		
-		JLabel lblNum = new JLabel("Nº: ");
-		lblNum.setBounds(39, 165, 47, 18);
-		panelPerfil.add(lblNum);
-		
-		JLabel lblTelefono = new JLabel("Teléfono: ");
-		lblTelefono.setBounds(39, 206, 70, 18);
-		panelPerfil.add(lblTelefono);
-		
-		JLabel lblCiudad = new JLabel("Ciudad: ");
-		lblCiudad.setBounds(39, 246, 70, 18);
-		panelPerfil.add(lblCiudad);
-		
-		txt_Ciudad = new JTextField();
-		txt_Ciudad.setColumns(10);
-		txt_Ciudad.setBounds(101, 245, 174, 20);
-		panelPerfil.add(txt_Ciudad);
-		
-		txt_Telefono = new JTextField();
-		txt_Telefono.setColumns(10);
-		txt_Telefono.setBounds(101, 205, 174, 20);
-		panelPerfil.add(txt_Telefono);
-		
-		txt_Num = new JTextField();
-		txt_Num.setColumns(10);
-		txt_Num.setBounds(101, 164, 50, 20);
-		panelPerfil.add(txt_Num);
-		
-		txt_Piso = new JTextField();
-		txt_Piso.setColumns(10);
-		txt_Piso.setBounds(228, 164, 47, 20);
-		panelPerfil.add(txt_Piso);
-		
-		txt_Calle = new JTextField();
-		txt_Calle.setColumns(10);
-		txt_Calle.setBounds(101, 123, 174, 20);
-		panelPerfil.add(txt_Calle);
-		
-		txt_Apellido1 = new JTextField();
-		txt_Apellido1.setColumns(10);
-		txt_Apellido1.setBounds(101, 83, 86, 20);
-		panelPerfil.add(txt_Apellido1);
-		
-		txt_Nombre = new JTextField();
-		txt_Nombre.setColumns(10);
-		txt_Nombre.setBounds(101, 43, 174, 20);
-		panelPerfil.add(txt_Nombre);
 		
 		JButton guardar_JBut = new JButton("Guardar");
 		guardar_JBut.setEnabled(false);
-		guardar_JBut.setBounds(186, 299, 89, 23);
+		guardar_JBut.setBounds(343, 286, 89, 23);
 		panelPerfil.add(guardar_JBut);
+		
+		JLabel lblTelefono = new JLabel("Tel\u00E9fono: ");
+		lblTelefono.setBounds(196, 232, 70, 18);
+		panelPerfil.add(lblTelefono);
+		
+		txt_Telefono = new JTextField();
+		txt_Telefono.setColumns(10);
+		txt_Telefono.setBounds(258, 231, 174, 20);
+		panelPerfil.add(txt_Telefono);
+		
+		txt_Piso = new JTextField();
+		txt_Piso.setColumns(10);
+		txt_Piso.setBounds(385, 190, 47, 20);
+		panelPerfil.add(txt_Piso);
+		
+		JLabel lblPiso = new JLabel("Piso: ");
+		lblPiso.setBounds(328, 191, 47, 18);
+		panelPerfil.add(lblPiso);
+		
+		JLabel lblNum = new JLabel("N\u00BA: ");
+		lblNum.setBounds(196, 191, 47, 18);
+		panelPerfil.add(lblNum);
+		
+		txt_Num = new JTextField();
+		txt_Num.setColumns(10);
+		txt_Num.setBounds(258, 190, 50, 20);
+		panelPerfil.add(txt_Num);
+		
+		txt_Calle = new JTextField();
+		txt_Calle.setColumns(10);
+		txt_Calle.setBounds(258, 149, 174, 20);
+		panelPerfil.add(txt_Calle);
+		
+		txt_Ciudad = new JTextField();
+		txt_Ciudad.setColumns(10);
+		txt_Ciudad.setBounds(258, 109, 174, 20);
+		panelPerfil.add(txt_Ciudad);
+		
+		txt_Apellido1 = new JTextField();
+		txt_Apellido1.setColumns(10);
+		txt_Apellido1.setBounds(258, 70, 86, 20);
+		panelPerfil.add(txt_Apellido1);
+		
+		JLabel lblApellidos = new JLabel("Apellidos: ");
+		lblApellidos.setBounds(196, 71, 70, 18);
+		panelPerfil.add(lblApellidos);
 		
 		txt_Apellido2 = new JTextField();
 		txt_Apellido2.setColumns(10);
-		txt_Apellido2.setBounds(189, 83, 86, 20);
+		txt_Apellido2.setBounds(346, 70, 86, 20);
 		panelPerfil.add(txt_Apellido2);
 		
-		JLabel lblFoto = new JLabel("foto");
-		lblFoto.setBounds(316, 75, 109, 132);
-		panelPerfil.add(lblFoto);
+		txt_Nombre = new JTextField();
+		txt_Nombre.setColumns(10);
+		txt_Nombre.setBounds(258, 30, 174, 20);
+		panelPerfil.add(txt_Nombre);
 		
-		JButton cambiarFoto_JBut = new JButton("Cambiar foto");
-		cambiarFoto_JBut.setBounds(316, 218, 109, 23);
-		panelPerfil.add(cambiarFoto_JBut);
+		JLabel lblNombre = new JLabel("Nombre: ");
+		lblNombre.setBounds(196, 31, 70, 18);
+		panelPerfil.add(lblNombre);
 		
-		JPanel panelInicio = new JPanel();
-		panelInicio.setBounds(0, 0, 469, 352);
-		layeredPane.add(panelInicio);
+		JLabel lblCalle = new JLabel("Calle: ");
+		lblCalle.setBounds(196, 150, 70, 18);
+		panelPerfil.add(lblCalle);
+		
+		JLabel lblCiudad = new JLabel("Ciudad: ");
+		lblCiudad.setBounds(196, 110, 70, 18);
+		panelPerfil.add(lblCiudad);
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);

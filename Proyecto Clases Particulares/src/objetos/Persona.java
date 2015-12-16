@@ -22,7 +22,22 @@ public class Persona {
 	private ArrayList<Mensaje> enviados = new ArrayList<Mensaje>();
 	private boolean alumnoProfesor; // Alumno = false y Profesor = true
 
-	public Persona(){}
+	public Persona(){
+		bandejaEntrada.add( new Peticion( "Petición", "Piruli",
+   	         "Clase de hoy", "15:30", "03/12/2015", new Boolean(false) ) );
+		bandejaEntrada.add( new Mensaje( "Mensaje", "Juan",
+  	         "Clase de mañana", "18:00", "01/11/2015", new Boolean(false) ) );
+		bandejaEntrada.add( new Peticion( "Petición", "Lola",
+  	         "Cancelar clase", "11:30", "02/10/2015", new Boolean(false) ) );
+		bandejaEntrada.add( new Mensaje( "Mensaje", "Catalina",
+     	         "Clase de ayer", "20:00", "01/11/2015", new Boolean(false) ) );
+		bandejaEntrada.add(new Peticion("Petición", "Periquita", "No quiero dar mas clase", "15:00", "12/12/2012", new Boolean(false)));
+		
+		enviados.add( new Mensaje( "Mensaje", "Catalina",
+    	         "Clase de ayer", "20:00", "01/11/2015", new Boolean(false) ) );
+		enviados.add(new Peticion("Petición", "Periquita", "No quiero dar mas clase", "15:00", "12/12/2012", new Boolean(false)));
+	}
+	
 
 	public Persona( String userName, String password, String dni, String nombre, String apellido1, String apellido2, int telefono,
 			String direccion, String ciudad, String fechaNacimiento, boolean alumnoProfesor ){
