@@ -335,9 +335,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(this, "El campo de Nombre no puede contener espacios", "ERROR Nombre", JOptionPane.ERROR_MESSAGE);
 				textField_Nom.setText("");
 			}
-			// Apellidos (solo letras)
-			// Ciudad (solo letras)
-			// numero y piso (solo nums)
+
 			// DNI (8 nums y una letra, sin espacios)
 			// Contraseñas
 			if(textField_Cont1.getText().equals(textField_Cont2.getText())){
@@ -349,11 +347,13 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 				// Se comprueba que todas las casillas esten con texto, sino se saca un mensaje de error
 				if(textField_UserName.getText().equals("") || textField_Cont1.getText().equals("") || textField_Cont2.getText().equals("") 
 						|| textField_Nom.getText().equals("") || textField_DNI.getText().equals("") || textField_Ape1.getText().equals("") || textField_Ape2.getText().equals("") 
-						|| (textField_Tlf.getText().length()!=9) || textField_Calle.getText().equals("") || textField_Num.getText().equals("") || textField_Piso.getText().equals("") 
-						|| textField_Ciudad.getText().equals("")){
+						|| textField_Calle.getText().equals("") || textField_Num.getText().equals("") || textField_Piso.getText().equals("") 
+						|| (textField_Tlf.getText().length()!=9) || textField_Ciudad.getText().equals("")){
 
 					String message;
 					String casilV = "";
+					Integer DNInums =  Integer.parseInt(textField_DNI.getText().substring(0, 7));
+					Character DNIletra = textField_DNI.getText().charAt(8);
 					if(textField_UserName.getText().equals(""))
 						casilV = casilV + " \n - Nombre de usuario";
 					if(textField_Cont1.getText().equals(""))
@@ -362,13 +362,13 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 						casilV = casilV + " \n - Repetir contraseña";
 					if(textField_Nom.getText().equals(""))
 						casilV = casilV + " \n - Nombre";
-					if(textField_DNI.getText().equals(""))
+					if(textField_DNI.getText().equals("") || !(DNInums instanceof Integer) || !(DNIletra instanceof Character))
 						casilV = casilV + " \n - DNI";
 					if(textField_Ape1.getText().equals(""))
 						casilV = casilV + " \n - Apellido 1";
 					if(textField_Ape2.getText().equals(""))
 						casilV = casilV + " \n - Apellido 2";
-					if(textField_Tlf.getText().equals(""))
+					if(textField_Tlf.getText().equals("") || (textField_Tlf.getText().length()!=9))
 						casilV = casilV + " \n - Teléfono";
 					if(textField_Calle.getText().equals(""))
 						casilV = casilV + " \n - Calle";
@@ -402,6 +402,8 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 						|| textField_Ciudad.getText().equals("")){
 					String message;
 					String casilV = "";
+					Integer DNInums =  Integer.parseInt(textField_DNI.getText().substring(0, 7));
+					Character DNIletra = textField_DNI.getText().charAt(8);
 					if(textField_UserName.getText().equals(""))
 						casilV = casilV + " \n - Nombre de usuario";
 					if(textField_Cont1.getText().equals(""))
@@ -410,13 +412,13 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 						casilV = casilV + " \n - Repetir contraseña";
 					if(textField_Nom.getText().equals(""))
 						casilV = casilV + " \n - Nombre";
-					if(textField_DNI.getText().equals(""))
+					if(textField_DNI.getText().equals("") || !(DNInums instanceof Integer) || !(DNIletra instanceof Character))
 						casilV = casilV + " \n - DNI";
 					if(textField_Ape1.getText().equals(""))
 						casilV = casilV + " \n - Apellido 1";
 					if(textField_Ape2.getText().equals(""))
 						casilV = casilV + " \n - Apellido 2";
-					if(textField_Tlf.getText().equals(""))
+					if(textField_Tlf.getText().equals("") || (textField_Tlf.getText().length()!=9))
 						casilV = casilV + " \n - Teléfono";
 					if(textField_Calle.getText().equals(""))
 						casilV = casilV + " \n - Calle";

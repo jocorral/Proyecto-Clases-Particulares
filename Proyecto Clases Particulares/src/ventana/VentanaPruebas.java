@@ -15,9 +15,7 @@ import javax.swing.JTextField;
 
 public class VentanaPruebas extends JFrame{
 	private JButton borrar_JBut;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTable table;
 	public VentanaPruebas() {
 		getContentPane().setLayout(null);
 		
@@ -63,44 +61,18 @@ public class VentanaPruebas extends JFrame{
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel label = new JLabel("Para: ");
-		label.setBounds(35, 28, 40, 16);
-		panel.add(label);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(116, 22, 264, 28);
-		panel.add(textField);
-		
-		JLabel label_1 = new JLabel("De parte de: ");
-		label_1.setBounds(35, 68, 85, 16);
-		panel.add(label_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(116, 62, 264, 28);
-		panel.add(textField_1);
-		
-		JLabel label_2 = new JLabel("Asunto: ");
-		label_2.setBounds(35, 108, 61, 16);
-		panel.add(label_2);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(116, 102, 264, 28);
-		panel.add(textField_2);
-		
-		JLabel label_3 = new JLabel("Contenido: ");
-		label_3.setBounds(185, 137, 85, 22);
-		panel.add(label_3);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 170, 418, 105);
+		scrollPane.setBounds(429, 88, -396, 205);
 		panel.add(scrollPane);
 		
-		JButton button = new JButton("Enviar");
-		button.setBounds(116, 295, 206, 29);
-		panel.add(button);
+		table = new JTable();
+		table.setBounds(33, 88, 396, 205);
+		panel.add(table);
+		
+		JLabel label = new JLabel("Bandeja de Entrada");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		label.setBounds(147, 35, 157, 25);
+		panel.add(label);
 	}
 	 public static void main(String[] args) {
 		VentanaPruebas a = new VentanaPruebas();

@@ -26,6 +26,9 @@ import java.awt.Rectangle;
 
 
 public class Ventana_Horarios extends JFrame{
+	private JButton btnGuardar;
+	private JButton btnAadirMsClases;
+	private JButton btnAtras;
 	private  int hora_inicial;
 	private int hora_final;
 	private boolean hora_correcta;
@@ -237,7 +240,7 @@ public class Ventana_Horarios extends JFrame{
 		comboBox_31.setBounds(352, 268, 74, 27);
 		this.getContentPane().add(comboBox_31);
 
-		JButton btnAtras = new JButton("Atras");
+		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ventana_Horarios.this.setVisible(false);
@@ -249,21 +252,28 @@ public class Ventana_Horarios extends JFrame{
 		btnAtras.setBounds(58, 331, 117, 29);
 		this.getContentPane().add(btnAtras);
 
-		JButton btnAadirMsClases = new JButton("Añadir más clases");
+		btnAadirMsClases = new JButton("Añadir más clases");
 		btnAadirMsClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				// TODO Añadir las clases a la BD
+				
+				
+				
+				
+				
+				
 				Ventana_Horarios.this.setVisible(false);
 				Ventana_Horarios.this.dispose();
 				Ventana_Horarios vHorarios = new Ventana_Horarios();
 				vHorarios.setVisible(true);
-				
+
 			}
 		});
 		btnAadirMsClases.setBounds(197, 331, 143, 29);
 		this.getContentPane().add(btnAadirMsClases);
 
-		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -299,7 +309,7 @@ public class Ventana_Horarios extends JFrame{
 			return hora_correcta;
 		}		
 	}
-	
+
 	public boolean horaValida1(){
 		hora_inicial= (comboBox_6.getSelectedIndex()*60)+comboBox_20.getSelectedIndex() ;
 		hora_final=(comboBox_13.getSelectedIndex()*60)+comboBox_28.getSelectedIndex();	
@@ -314,7 +324,7 @@ public class Ventana_Horarios extends JFrame{
 			return hora_correcta;
 		}
 	}
-	
+
 	public boolean horaValida2(){
 		hora_inicial= (comboBox_8.getSelectedIndex()*60)+comboBox_22.getSelectedIndex() ;
 		hora_final=(comboBox_15.getSelectedIndex()*60)+comboBox_30.getSelectedIndex();	
@@ -330,7 +340,7 @@ public class Ventana_Horarios extends JFrame{
 		}
 
 	}
-	
+
 	public boolean horaValida3(){
 		hora_inicial= (comboBox_9.getSelectedIndex()*60)+comboBox_23.getSelectedIndex() ;
 		hora_final=(comboBox_16.getSelectedIndex()*60)+comboBox_31.getSelectedIndex();	
@@ -346,7 +356,7 @@ public class Ventana_Horarios extends JFrame{
 		}
 
 	}
-	
+
 	public boolean horaValida4(){
 		hora_inicial= (comboBox_7.getSelectedIndex()*60)+comboBox_21.getSelectedIndex() ;
 		hora_final=(comboBox_14.getSelectedIndex()*60)+comboBox_29.getSelectedIndex();	
@@ -361,5 +371,5 @@ public class Ventana_Horarios extends JFrame{
 			return hora_correcta;
 		}
 	}
-	
+
 }

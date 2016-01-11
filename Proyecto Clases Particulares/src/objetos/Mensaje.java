@@ -37,10 +37,10 @@ public class Mensaje implements DatoParaTabla{
 	}
 	public Mensaje(){}
 	
-	public String getTipo(Mensaje mensaje) {
-		if ( mensaje instanceof Peticion ){
+	public String getTipo() {
+		if ( this instanceof Peticion ){
 			tipo = "Peticio9n";
-		}else if (mensaje instanceof Mensaje){
+		}else if (this instanceof Mensaje){
 			tipo = "Mensaje";	
 		}
 		return tipo;
