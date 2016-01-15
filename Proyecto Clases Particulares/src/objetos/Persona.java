@@ -20,7 +20,6 @@ public class Persona {
 	private Date fechaNacimiento;
 	private ArrayList<Mensaje> bandejaEntrada = new ArrayList<Mensaje>();
 	private ArrayList<Mensaje> enviados = new ArrayList<Mensaje>();
-	private boolean alumnoProfesor; // Alumno = false y Profesor = true
 
 	public Persona(){
 		bandejaEntrada.add( new Peticion( "Petición", "Piruli",
@@ -51,7 +50,6 @@ public class Persona {
 		this.direccion = direccion;
 		this.ciudad = ciudad;
 		this.fechaNacimiento = conseguirFecha(fechaNacimiento);
-		this.alumnoProfesor = alumnoProfesor;
 	}
 	/**
 	 * Método que convierte el String que le pasa por parámetro en Date.

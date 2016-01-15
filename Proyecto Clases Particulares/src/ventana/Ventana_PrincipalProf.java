@@ -186,6 +186,9 @@ public class Ventana_PrincipalProf extends JFrame{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(25, 172, 418, 105);
 		panelMensajes.add(scrollPane);
+		
+		JTextPane textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
 
 		JButton button = new JButton("Enviar");
 		button.setBounds(120, 297, 206, 29);

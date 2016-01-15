@@ -19,6 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
+import objetos.BaseDeDatos;
 import objetos.Persona;
 
 import java.awt.event.ActionListener;
@@ -322,8 +323,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 		
 		if(botonPressed == cancelar_JButton){
 			this.dispose();
-		}else if(botonPressed == guardar_JButton){
-			
+		}else if(botonPressed == guardar_JButton){	
 			// Validaciones:
 			// Nombre de usuario (sin espacios)
 			if(textField_UserName.getText().contains(" ")){
@@ -335,8 +335,6 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(this, "El campo de Nombre no puede contener espacios", "ERROR Nombre", JOptionPane.ERROR_MESSAGE);
 				textField_Nom.setText("");
 			}
-
-			// DNI (8 nums y una letra, sin espacios)
 			// Contraseñas
 			if(textField_Cont1.getText().equals(textField_Cont2.getText())){
 				password = textField_Cont1.getText();
@@ -386,11 +384,9 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 					fecha = comboDias.getSelectedItem().toString() + "/" + comboMes.getSelectedItem().toString() + "/" + comboAnyo.getSelectedItem().toString();
 					direccion = textField_Calle.getText() + textField_Num.getText() + textField_Piso.getText();
 					telefono = Integer.parseInt(textField_Tlf.getText());
-					Persona nuevoAlumno = new Persona(textField_UserName.getText(), password, textField_DNI.getText(), textField_Nom.getText(), textField_Ape1.getText(), textField_Ape2.getText(),
-							telefono, direccion, textField_Ciudad.getText(), fecha, false );
-					/* Cuando se cree 
-					 * Ventana_NewAlumno a = new Ventana_NewProfesor(nuevoAlumno);
-					 */				
+					
+					BaseDeDatos.anyadirAlumno(textField_UserName.getText(), password, textField_Nom.getText(), textField_Ape1.getText(),
+							textField_Ape2.getText(), textField_DNI.getText(), fecha, textField_Tlf.getText(), "ALUMNO", direccion, textField_Ciudad.getText());
 					this.dispose();
 					}
 

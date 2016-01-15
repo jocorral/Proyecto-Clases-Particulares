@@ -24,6 +24,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Rectangle;
 
+import javax.swing.JTextField;
+
+import objetos.BaseDeDatos;
+
+import java.awt.Dimension;
+
 
 public class Ventana_Horarios extends JFrame{
 	private JButton btnGuardar;
@@ -55,11 +61,17 @@ public class Ventana_Horarios extends JFrame{
 	private JComboBox comboBox_21;
 	private JComboBox comboBox_14;
 	private JComboBox comboBox_29;
+	private JTextField txtAlumno1;
+	private JTextField txtAlumno2;
+	private JTextField txtAlumno3;
+	private JTextField txtAlumno4;
+	private JTextField txtAlumno5;
 
 	/**
 	 * Create the application.
 	 */
 	public Ventana_Horarios() {
+		setMinimumSize(new Dimension(570, 415));
 		initialize();
 	}
 
@@ -82,22 +94,22 @@ public class Ventana_Horarios extends JFrame{
 		this.getContentPane().add(lblDia);
 
 		JLabel lblMes = new JLabel("Mes");
-		lblMes.setBounds(164, 65, 31, 16);
+		lblMes.setBounds(196, 65, 31, 16);
 		this.getContentPane().add(lblMes);
 
 		JLabel lblAo = new JLabel("Año");
-		lblAo.setBounds(352, 65, 61, 16);
+		lblAo.setBounds(388, 65, 61, 16);
 		this.getContentPane().add(lblAo);
 
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Enero\t\t", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre ", "Noviembre", "Diciembre"}));
 		comboBox.setMaximumRowCount(12);
-		comboBox.setBounds(197, 61, 117, 27);
+		comboBox.setBounds(237, 60, 117, 27);
 		this.getContentPane().add(comboBox);
 
 		comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"}));
-		comboBox_1.setBounds(397, 61, 98, 27);
+		comboBox_1.setBounds(425, 60, 98, 27);
 		this.getContentPane().add(comboBox_1);
 
 		comboBox_2 = new JComboBox();
@@ -112,7 +124,7 @@ public class Ventana_Horarios extends JFrame{
 
 		comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_3.setBounds(107, 153, 74, 27);
+		comboBox_3.setBounds(101, 153, 74, 27);
 		this.getContentPane().add(comboBox_3);
 
 		JLabel lblClase = new JLabel("Clase 2");
@@ -136,108 +148,108 @@ public class Ventana_Horarios extends JFrame{
 		this.getContentPane().add(lblClase_4);
 
 		JLabel lblHasta = new JLabel("Hasta");
-		lblHasta.setBounds(322, 129, 61, 16);
+		lblHasta.setBounds(316, 129, 61, 16);
 		this.getContentPane().add(lblHasta);
 
 		JLabel lblDesde = new JLabel("Desde");
-		lblDesde.setBounds(154, 129, 61, 16);
+		lblDesde.setBounds(148, 129, 61, 16);
 		this.getContentPane().add(lblDesde);
 
 		comboBox_4 = new JComboBox();
 		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_4.setBounds(181, 153, 74, 27);
+		comboBox_4.setBounds(175, 153, 74, 27);
 		this.getContentPane().add(comboBox_4);
 
 		comboBox_5 = new JComboBox();
 		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_5.setBounds(275, 153, 74, 27);
+		comboBox_5.setBounds(269, 153, 74, 27);
 		this.getContentPane().add(comboBox_5);
 
 		comboBox_6 = new JComboBox();
 		comboBox_6.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_6.setBounds(107, 184, 74, 27);
+		comboBox_6.setBounds(101, 184, 74, 27);
 		this.getContentPane().add(comboBox_6);
 
 		comboBox_7 = new JComboBox();
 		comboBox_7.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_7.setBounds(107, 212, 74, 27);
+		comboBox_7.setBounds(101, 212, 74, 27);
 
 		this.getContentPane().add(comboBox_7);
 
 		comboBox_8 = new JComboBox();
 		comboBox_8.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_8.setBounds(107, 240, 74, 27);
+		comboBox_8.setBounds(101, 240, 74, 27);
 		this.getContentPane().add(comboBox_8);
 
 		comboBox_9 = new JComboBox();
 		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_9.setBounds(107, 268, 74, 27);
+		comboBox_9.setBounds(101, 268, 74, 27);
 		this.getContentPane().add(comboBox_9);
 
 		comboBox_13 = new JComboBox();
 		comboBox_13.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_13.setBounds(275, 184, 74, 27);
+		comboBox_13.setBounds(269, 184, 74, 27);
 		this.getContentPane().add(comboBox_13);
 
 		comboBox_14 = new JComboBox();
 		comboBox_14.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_14.setBounds(275, 212, 74, 27);
+		comboBox_14.setBounds(269, 212, 74, 27);
 		this.getContentPane().add(comboBox_14);
 
 		comboBox_15 = new JComboBox();
 		comboBox_15.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_15.setBounds(275, 240, 74, 27);
+		comboBox_15.setBounds(269, 240, 74, 27);
 		this.getContentPane().add(comboBox_15);
 
 		comboBox_16 = new JComboBox();
 		comboBox_16.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_16.setBounds(275, 268, 74, 27);
+		comboBox_16.setBounds(269, 268, 74, 27);
 		this.getContentPane().add(comboBox_16);
 
 		comboBox_20 = new JComboBox();
 		comboBox_20.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_20.setBounds(181, 184, 74, 27);
+		comboBox_20.setBounds(175, 184, 74, 27);
 		this.getContentPane().add(comboBox_20);
 
 		comboBox_21 = new JComboBox();
 		comboBox_21.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_21.setBounds(181, 212, 74, 27);
+		comboBox_21.setBounds(175, 212, 74, 27);
 		this.getContentPane().add(comboBox_21);
 
 		comboBox_22 = new JComboBox();
 		comboBox_22.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_22.setBounds(181, 240, 74, 27);
+		comboBox_22.setBounds(175, 240, 74, 27);
 		this.getContentPane().add(comboBox_22);
 
 		comboBox_23 = new JComboBox();
 		comboBox_23.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_23.setBounds(181, 268, 74, 27);
+		comboBox_23.setBounds(175, 268, 74, 27);
 		this.getContentPane().add(comboBox_23);
 
 		comboBox_27 = new JComboBox();
 		comboBox_27.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_27.setBounds(352, 153, 74, 27);
+		comboBox_27.setBounds(346, 153, 74, 27);
 		this.getContentPane().add(comboBox_27);
 
 		comboBox_28 = new JComboBox();
 		comboBox_28.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_28.setBounds(352, 184, 74, 27);
+		comboBox_28.setBounds(346, 184, 74, 27);
 
 		this.getContentPane().add(comboBox_28);
 
 		comboBox_29 = new JComboBox();
 		comboBox_29.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_29.setBounds(352, 212, 74, 27);
+		comboBox_29.setBounds(346, 212, 74, 27);
 		this.getContentPane().add(comboBox_29);
 
 		comboBox_30 = new JComboBox();
 		comboBox_30.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_30.setBounds(352, 240, 74, 27);
+		comboBox_30.setBounds(346, 240, 74, 27);
 		this.getContentPane().add(comboBox_30);
 
 		comboBox_31 = new JComboBox();
 		comboBox_31.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_31.setBounds(352, 268, 74, 27);
+		comboBox_31.setBounds(346, 268, 74, 27);
 		this.getContentPane().add(comboBox_31);
 
 		btnAtras = new JButton("Atras");
@@ -255,10 +267,9 @@ public class Ventana_Horarios extends JFrame{
 		btnAadirMsClases = new JButton("Añadir más clases");
 		btnAadirMsClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				// TODO Añadir las clases a la BD
 				
-				
+				BaseDeDatos.anyadirClases();	
 				
 				
 				
@@ -266,6 +277,7 @@ public class Ventana_Horarios extends JFrame{
 				Ventana_Horarios.this.setVisible(false);
 				Ventana_Horarios.this.dispose();
 				Ventana_Horarios vHorarios = new Ventana_Horarios();
+				vHorarios.setLocationRelativeTo(null);
 				vHorarios.setVisible(true);
 
 			}
@@ -290,6 +302,31 @@ public class Ventana_Horarios extends JFrame{
 		});
 		btnGuardar.setBounds(352, 331, 117, 29);
 		this.getContentPane().add(btnGuardar);
+		
+		txtAlumno1 = new JTextField();
+		txtAlumno1.setBounds(437, 153, 86, 27);
+		getContentPane().add(txtAlumno1);
+		txtAlumno1.setColumns(10);
+		
+		txtAlumno2 = new JTextField();
+		txtAlumno2.setColumns(10);
+		txtAlumno2.setBounds(437, 184, 86, 27);
+		getContentPane().add(txtAlumno2);
+		
+		txtAlumno3 = new JTextField();
+		txtAlumno3.setColumns(10);
+		txtAlumno3.setBounds(437, 212, 86, 27);
+		getContentPane().add(txtAlumno3);
+		
+		txtAlumno4 = new JTextField();
+		txtAlumno4.setColumns(10);
+		txtAlumno4.setBounds(437, 240, 86, 27);
+		getContentPane().add(txtAlumno4);
+		
+		txtAlumno5 = new JTextField();
+		txtAlumno5.setColumns(10);
+		txtAlumno5.setBounds(437, 268, 86, 27);
+		getContentPane().add(txtAlumno5);
 	}
 	public boolean horaValida(){
 
@@ -371,5 +408,4 @@ public class Ventana_Horarios extends JFrame{
 			return hora_correcta;
 		}
 	}
-
 }
