@@ -38,9 +38,9 @@ public class Ventana_Horarios extends JFrame{
 	private  int hora_inicial;
 	private int hora_final;
 	private boolean hora_correcta;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
-	private JComboBox comboBox_2;
+	private JComboBox comboMes;
+	private JComboBox comboAnyo;
+	private JComboBox comboDia;
 	private JComboBox horasInicio_1;
 	private JComboBox minutosInicio_1;
 	private JComboBox horasFin_1;
@@ -101,22 +101,22 @@ public class Ventana_Horarios extends JFrame{
 		lblAo.setBounds(388, 65, 61, 16);
 		this.getContentPane().add(lblAo);
 
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Enero\t\t", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre ", "Noviembre", "Diciembre"}));
-		comboBox.setMaximumRowCount(12);
-		comboBox.setBounds(237, 60, 117, 27);
-		this.getContentPane().add(comboBox);
+		comboMes = new JComboBox();
+		comboMes.setModel(new DefaultComboBoxModel(new String[] {"Enero\t\t", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre ", "Noviembre", "Diciembre"}));
+		comboMes.setMaximumRowCount(12);
+		comboMes.setBounds(237, 60, 117, 27);
+		this.getContentPane().add(comboMes);
 
-		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"}));
-		comboBox_1.setBounds(425, 60, 98, 27);
-		this.getContentPane().add(comboBox_1);
+		comboAnyo = new JComboBox();
+		comboAnyo.setModel(new DefaultComboBoxModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"}));
+		comboAnyo.setBounds(425, 60, 98, 27);
+		this.getContentPane().add(comboAnyo);
 
-		comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		comboBox_2.setMaximumRowCount(31);
-		comboBox_2.setBounds(86, 61, 74, 27);
-		this.getContentPane().add(comboBox_2);
+		comboDia = new JComboBox();
+		comboDia.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
+		comboDia.setMaximumRowCount(31);
+		comboDia.setBounds(86, 61, 74, 27);
+		this.getContentPane().add(comboDia);
 
 		JLabel lblHorario = new JLabel("Horario:");
 		lblHorario.setBounds(30, 129, 61, 16);
@@ -268,6 +268,11 @@ public class Ventana_Horarios extends JFrame{
 		btnAadirMsClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Añadir las clases a la BD
+				String horaInicio1 = horasInicio_1.getSelectedItem().toString() + minutosInicio_1.getSelectedItem().toString();
+				String horaFin1 = horasFin_1.getSelectedItem().toString() + minutosFin_1.getSelectedItem().toString();
+				String fecha = comboDia.getSelectedItem().toString() + "" + comboMes.getSelectedItem().toString() + "" + comboAnyo.getSelectedItem().toString();
+				String alumno_UN = txtAlumno1.getText();
+				String profe_UN = BaseDeDatos.getMiUser();
 				BaseDeDatos.anyadirSesiones();	
 					
 				
