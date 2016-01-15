@@ -385,7 +385,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 					direccion = textField_Calle.getText() + textField_Num.getText() + textField_Piso.getText();
 					telefono = Integer.parseInt(textField_Tlf.getText());
 					
-					BaseDeDatos.anyadirAlumno(textField_UserName.getText(), password, textField_Nom.getText(), textField_Ape1.getText(),
+					BaseDeDatos.crearPersona(textField_UserName.getText(), password, textField_Nom.getText(), textField_Ape1.getText(),
 							textField_Ape2.getText(), textField_DNI.getText(), fecha, textField_Tlf.getText(), "ALUMNO", direccion, textField_Ciudad.getText());
 					this.dispose();
 					}
@@ -435,6 +435,8 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 					telefono = Integer.parseInt(textField_Tlf.getText());
 					Persona nuevoProfesor = new Persona(textField_UserName.getText(), password, textField_DNI.getText(), textField_Nom.getText(), textField_Ape1.getText(), textField_Ape2.getText(),
 							telefono, direccion, textField_Ciudad.getText(), fecha, true );
+					BaseDeDatos.crearPersona(textField_UserName.getText(), password, textField_Nom.getText(), textField_Ape1.getText(),
+							textField_Ape2.getText(), textField_DNI.getText(), fecha, textField_Tlf.getText(), "PROFESOR", direccion, textField_Ciudad.getText());
 					Ventana_NewProfesor vPorfesor = new Ventana_NewProfesor(nuevoProfesor);		
 					this.dispose();
 				}

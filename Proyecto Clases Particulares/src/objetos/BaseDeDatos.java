@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import ventana.Ventana_Login;
+import ventana.Ventana_NewPersona;
+
 /** Ejemplo de uso de Base de Datos desde Java con JDBC
  * Utilizando sqlite - debe incluirse la librería sqlite-jdbc*.jar
  * @author Andoni Eguíluz Morán
@@ -66,7 +69,7 @@ public class BaseDeDatos {
 			System.err.println(e);
 		}
 	}
-	
+
 	public static void finConexion() {
 		try {
 			statement.close();
@@ -76,25 +79,25 @@ public class BaseDeDatos {
 		}
 	}
 
-	public static void crearTablas(){
+	public static void crearPersona(String username, String pass, String nombre, String apellido_1, String apellido_2, String dni, String f_ncto,
+			String tlf, String tipoU, String dir, String ciudad){	
+		final String sentencia = ("INSERT INTO PERSONA VALUES '" + username + "', '" + pass + "', '" + nombre +"', '" + apellido_1 + "',"
+				+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "'");
+		final String nombreU = username;
+		
 		Thread hiloDB = new Thread( new Runnable() {
 			public void run(){
 				try {
-					// Crea la tabla si no existe
-					statement.executeUpdate( "CREATE TABLE IF NOT EXISTS COMPONENTES ( NOMBRE TEXT, TIPO TEXT, LISTAPUNTOS TEXT )" );
-					// Recorre los componentes y los guarda en BD
-					for(Componente c: marcasAverias.getComponentes()) {
-						// Existe el componente en la BD?
-						ResultSet rs = statement.executeQuery( "SELECT * FROM COMPONENTES WHERE NOMBRE='" + c.getNombre() + "'" );
-						if (rs.next()) {  // El componente ya existe: UPDATE
-							statement.executeUpdate( "UPDATE COMPONENTES SET TIPO='" + c.getTipo() + 
-								"',LISTAPUNTOS='" + c.getAL().toString() + "' WHERE NOMBRE='" + c.getNombre() + "'" );
-						} else {  // El componente no existe: INSERT
-							statement.executeUpdate( "INSERT INTO COMPONENTES VALUES( '"
-								+ c.getNombre() + "','" + c.getTipo() + "','" + c.getAL().toString() + "')" );
-						}
-						rs.close();
+					ResultSet rs = statement.executeQuery( "SELECT * FROM PERSONA WHERE NOMBRE='" + nombreU + "'" );
+					if (rs.next()) { //La persona existe ya en la BD
+						Ventana_Login a = new Ventana_Login();
+						a.setLocationRelativeTo(null);
+						a.setVisible(true);
+					} else {  // El componente no existe: INSERT	
+						insert(sentencia);
 					}
+					rs.close();
+
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -102,17 +105,20 @@ public class BaseDeDatos {
 		});
 		hiloDB.start();
 	}
-	
-	
-	public static void insertInt() {
-		final String sent = "insert into NOMBRETABLA values("  + /*tiempo*/ "" + ")";
+
+	/**
+	 * Realiza la sentencia insert pasada por parámetro.
+	 * @param sentencias sentencia a insertar.
+	 */
+	public static void insert(String sentencias){ 
+		final String sentencia = sentencias;
 		Runnable r = new Runnable() {
 			@Override
 			public void run() {
 				try {
-					statement.executeUpdate(sent);
+					statement.executeUpdate(sentencia);
 				} catch (SQLException e) {
-					System.out.println( "ERROR EN SENTENCIA SQL: " + sent);
+					System.out.println( "ERROR EN SENTENCIA SQL: " + sentencia);
 					e.printStackTrace();
 				}
 			}
@@ -124,13 +130,20 @@ public class BaseDeDatos {
 			String tlf, String tipoU, String dir, String ciudad) {
 		// TODO Auto-generated method stub
 		String sentencia = ("INSERT INTO PERSONA VALUES '" + username + "', '" + pass + "', '" + nombre +"', '" + apellido_1 + "',"
-		+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "'");
-		
+				+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "'");
+		insert(sentencia);
 	}
 
-	public static void anyadirSesiones(String horaIni, String horaFin, String fecha, String username) {
+	public static void anyadirSesiones(String horaIni, String horaFin, String fecha, String usernameA, String usernameP) {
 		// TODO Auto-generated method stub
-		String sentencia = ("INSERT INTO SESION VALUES '" + horaIni + "', '" + horaFin + "', '" + fecha + "', '" + username + "'");
+		String sentencia = ("INSERT INTO SESION VALUES '" + horaIni + "', '" + horaFin + "', '" + fecha + "', '" + usernameA + "', '" + usernameP + "'");
+		insert(sentencia);
 	}
+
+	public static String getMiUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

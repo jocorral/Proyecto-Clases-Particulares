@@ -268,20 +268,41 @@ public class Ventana_Horarios extends JFrame{
 		btnAadirMsClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Añadir las clases a la BD
-				String horaInicio1 = horasInicio_1.getSelectedItem().toString() + minutosInicio_1.getSelectedItem().toString();
-				String horaFin1 = horasFin_1.getSelectedItem().toString() + minutosFin_1.getSelectedItem().toString();
-				String fecha = comboDia.getSelectedItem().toString() + "" + comboMes.getSelectedItem().toString() + "" + comboAnyo.getSelectedItem().toString();
-				String alumno_UN = txtAlumno1.getText();
-				String profe_UN = BaseDeDatos.getMiUser();
-				BaseDeDatos.anyadirSesiones();	
-					
-				
-				Ventana_Horarios.this.setVisible(false);
-				Ventana_Horarios.this.dispose();
-				Ventana_Horarios vHorarios = new Ventana_Horarios();
-				vHorarios.setLocationRelativeTo(null);
-				vHorarios.setVisible(true);
-
+				if(txtAlumno1.getText().equals(null) ||txtAlumno2.getText().equals(null) || txtAlumno3.getText().equals(null) ||
+						txtAlumno4.getText().equals(null) ||txtAlumno5.getText().equals(null) ||
+						!horaValida(horasInicio_1, minutosInicio_1, horasFin_1, minutosFin_1)==false||!horaValida(horasInicio_2, minutosInicio_2, horasFin_2, minutosFin_2)==false||
+						!horaValida(horasInicio_3, minutosInicio_3, horasFin_3, minutosFin_3)==false||!horaValida(horasInicio_4, minutosInicio_4, horasFin_4, minutosFin_4)==false||
+						!horaValida(horasInicio_5, minutosInicio_5, horasFin_5, minutosFin_5)==false){
+					JOptionPane.showMessageDialog(Ventana_Horarios.this, "Aún se pueden añadir más clases en esta ventana o ha dejado alguna casilla de alumno vacía.", "Operación innecesaria", JOptionPane.ERROR_MESSAGE);
+				}else{
+					String horaInicio1 = horasInicio_1.getSelectedItem().toString() + minutosInicio_1.getSelectedItem().toString();
+					String horaFin1 = horasFin_1.getSelectedItem().toString() + minutosFin_1.getSelectedItem().toString();
+					String alumno_UN1 = txtAlumno1.getText();
+					String horaInicio2 = horasInicio_2.getSelectedItem().toString() + minutosInicio_2.getSelectedItem().toString();
+					String horaFin2 = horasFin_2.getSelectedItem().toString() + minutosFin_2.getSelectedItem().toString();
+					String alumno_UN2 = txtAlumno2.getText();
+					String horaInicio3 = horasInicio_3.getSelectedItem().toString() + minutosInicio_3.getSelectedItem().toString();
+					String horaFin3 = horasFin_3.getSelectedItem().toString() + minutosFin_3.getSelectedItem().toString();
+					String alumno_UN3 = txtAlumno3.getText();
+					String horaInicio4 = horasInicio_4.getSelectedItem().toString() + minutosInicio_4.getSelectedItem().toString();
+					String horaFin4 = horasFin_4.getSelectedItem().toString() + minutosFin_4.getSelectedItem().toString();
+					String alumno_UN4 = txtAlumno4.getText();
+					String horaInicio5 = horasInicio_5.getSelectedItem().toString() + minutosInicio_5.getSelectedItem().toString();
+					String horaFin5 = horasFin_5.getSelectedItem().toString() + minutosFin_5.getSelectedItem().toString();
+					String alumno_UN5 = txtAlumno5.getText();
+					String fecha = comboDia.getSelectedItem().toString() + "" + comboMes.getSelectedItem().toString() + "" + comboAnyo.getSelectedItem().toString();
+					String profe_UN = BaseDeDatos.getMiUser();
+					BaseDeDatos.anyadirSesiones(horaInicio1, horaFin1, fecha, alumno_UN1, profe_UN);	
+					BaseDeDatos.anyadirSesiones(horaInicio2, horaFin2, fecha, alumno_UN2, profe_UN);
+					BaseDeDatos.anyadirSesiones(horaInicio3, horaFin3, fecha, alumno_UN3, profe_UN);
+					BaseDeDatos.anyadirSesiones(horaInicio4, horaFin4, fecha, alumno_UN4, profe_UN);
+					BaseDeDatos.anyadirSesiones(horaInicio5, horaFin5, fecha, alumno_UN5, profe_UN);
+					Ventana_Horarios.this.setVisible(false);
+					Ventana_Horarios.this.dispose();
+					Ventana_Horarios vHorarios = new Ventana_Horarios();
+					vHorarios.setLocationRelativeTo(null);
+					vHorarios.setVisible(true);
+				}
 			}
 		});
 		btnAadirMsClases.setBounds(197, 331, 143, 29);
@@ -290,9 +311,9 @@ public class Ventana_Horarios extends JFrame{
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				horaValida();
-				if(horaValida()==false||horaValida1()==false||horaValida2()==false||horaValida3()==false||horaValida4()==false||horaValida()==false){
+				if(horaValida(horasInicio_1, minutosInicio_1, horasFin_1, minutosFin_1)==false||horaValida(horasInicio_2, minutosInicio_2, horasFin_2, minutosFin_2)==false||
+						horaValida(horasInicio_3, minutosInicio_3, horasFin_3, minutosFin_3)==false||horaValida(horasInicio_4, minutosInicio_4, horasFin_4, minutosFin_4)==false||
+						horaValida(horasInicio_5, minutosInicio_5, horasFin_5, minutosFin_5)==false){
 					String message="la hora final acaba antes de la hora inicial";
 					System.out.println(message);
 					JOptionPane.showMessageDialog(Ventana_Horarios.this, message,"¡Casillas vacías!", JOptionPane.ERROR_MESSAGE);
@@ -304,36 +325,36 @@ public class Ventana_Horarios extends JFrame{
 		});
 		btnGuardar.setBounds(352, 331, 117, 29);
 		this.getContentPane().add(btnGuardar);
-		
+
 		txtAlumno1 = new JTextField();
 		txtAlumno1.setBounds(437, 153, 86, 27);
 		getContentPane().add(txtAlumno1);
 		txtAlumno1.setColumns(10);
-		
+
 		txtAlumno2 = new JTextField();
 		txtAlumno2.setColumns(10);
 		txtAlumno2.setBounds(437, 184, 86, 27);
 		getContentPane().add(txtAlumno2);
-		
+
 		txtAlumno3 = new JTextField();
 		txtAlumno3.setColumns(10);
 		txtAlumno3.setBounds(437, 212, 86, 27);
 		getContentPane().add(txtAlumno3);
-		
+
 		txtAlumno4 = new JTextField();
 		txtAlumno4.setColumns(10);
 		txtAlumno4.setBounds(437, 240, 86, 27);
 		getContentPane().add(txtAlumno4);
-		
+
 		txtAlumno5 = new JTextField();
 		txtAlumno5.setColumns(10);
 		txtAlumno5.setBounds(437, 268, 86, 27);
 		getContentPane().add(txtAlumno5);
 	}
-	public boolean horaValida(){
+	public boolean horaValida(JComboBox horaIni, JComboBox minutosIni, JComboBox horaFin, JComboBox minutosFin ){
 
-		hora_inicial= (horasInicio_1.getSelectedIndex()*60)+minutosInicio_1.getSelectedIndex() ;
-		hora_final=(horasFin_1.getSelectedIndex()*60)+minutosFin_1.getSelectedIndex();	
+		hora_inicial= (horaIni.getSelectedIndex()*60)+minutosIni.getSelectedIndex() ;
+		hora_final=(horaFin.getSelectedIndex()*60)+minutosFin.getSelectedIndex();	
 		System.out.println(hora_inicial);	
 		System.out.println(hora_final);
 
@@ -349,65 +370,4 @@ public class Ventana_Horarios extends JFrame{
 		}		
 	}
 
-	public boolean horaValida1(){
-		hora_inicial= (horasInicio_2.getSelectedIndex()*60)+minutosInicio_2.getSelectedIndex() ;
-		hora_final=(horasFin_2.getSelectedIndex()*60)+minutosFin_2.getSelectedIndex();	
-		System.out.println(hora_inicial);	
-		System.out.println(hora_final);
-		if (hora_inicial>hora_final){
-			hora_correcta=false;
-			return hora_correcta;
-		}
-		else{
-			hora_correcta=true;
-			return hora_correcta;
-		}
-	}
-
-	public boolean horaValida2(){
-		hora_inicial= (horasInicio_4.getSelectedIndex()*60)+minutosInicio_4.getSelectedIndex() ;
-		hora_final=(horasFin_4.getSelectedIndex()*60)+minutosFin_4.getSelectedIndex();	
-		System.out.println(hora_inicial);	
-		System.out.println(hora_final);
-		if (hora_inicial>hora_final){
-			hora_correcta=false;
-			return hora_correcta;
-		}
-		else{
-			hora_correcta=true;
-			return hora_correcta;
-		}
-
-	}
-
-	public boolean horaValida3(){
-		hora_inicial= (horasInicio_5.getSelectedIndex()*60)+minutosInicio_5.getSelectedIndex() ;
-		hora_final=(horasFin_5.getSelectedIndex()*60)+minutosFin_5.getSelectedIndex();	
-		System.out.println(hora_inicial);	
-		System.out.println(hora_final);
-		if (hora_inicial>hora_final){
-			hora_correcta=false;
-			return hora_correcta;
-		}
-		else{
-			hora_correcta=true;
-			return hora_correcta;
-		}
-
-	}
-
-	public boolean horaValida4(){
-		hora_inicial= (horasInicio_3.getSelectedIndex()*60)+minutosInicio_3.getSelectedIndex() ;
-		hora_final=(horasFin_3.getSelectedIndex()*60)+minutosFin_3.getSelectedIndex();	
-		System.out.println(hora_inicial);	
-		System.out.println(hora_final);
-		if (hora_inicial>hora_final){
-			hora_correcta=false;
-			return hora_correcta;
-		}
-		else{
-			hora_correcta=true;
-			return hora_correcta;
-		}
-	}
 }

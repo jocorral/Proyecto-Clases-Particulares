@@ -328,9 +328,8 @@ public class Ventana_NewProfesor{
 		int n = 100;
 		String textoCurriculum;
 		n=(int)slider.getValue(); 
-		//esto es lo unico que me casca que no consigo obtner el valor del slider ****************
-		//n= slider1.getValue();
 		textoCurriculum = textPane.getText();
+		// TODO conseguir todas las clases de profesor
 		estaRelleno=true;
 		if(n == 0  || textoCurriculum.equals("")){
 			estaRelleno=false;
