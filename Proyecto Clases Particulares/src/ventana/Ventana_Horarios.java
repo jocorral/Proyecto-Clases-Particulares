@@ -41,26 +41,26 @@ public class Ventana_Horarios extends JFrame{
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
 	private JComboBox comboBox_2;
-	private JComboBox comboBox_3;
-	private JComboBox comboBox_4;
-	private JComboBox comboBox_5;
-	private JComboBox comboBox_27;
-	private JComboBox comboBox_6;
-	private JComboBox comboBox_20;
-	private JComboBox comboBox_13;
-	private JComboBox comboBox_28;
-	private JComboBox comboBox_8;
-	private JComboBox comboBox_22;
-	private JComboBox comboBox_15;
-	private JComboBox comboBox_30;
-	private JComboBox comboBox_9;
-	private JComboBox comboBox_23;
-	private JComboBox comboBox_16;
-	private JComboBox comboBox_31;
-	private JComboBox comboBox_7;
-	private JComboBox comboBox_21;
-	private JComboBox comboBox_14;
-	private JComboBox comboBox_29;
+	private JComboBox horasInicio_1;
+	private JComboBox minutosInicio_1;
+	private JComboBox horasFin_1;
+	private JComboBox minutosFin_1;
+	private JComboBox horasInicio_2;
+	private JComboBox minutosInicio_2;
+	private JComboBox horasFin_2;
+	private JComboBox minutosFin_2;
+	private JComboBox horasInicio_4;
+	private JComboBox minutosInicio_4;
+	private JComboBox horasFin_4;
+	private JComboBox minutosFin_4;
+	private JComboBox horasInicio_5;
+	private JComboBox minutosInicio_5;
+	private JComboBox horasFin_5;
+	private JComboBox minutosFin_5;
+	private JComboBox horasInicio_3;
+	private JComboBox minutosInicio_3;
+	private JComboBox horasFin_3;
+	private JComboBox minutosFin_3;
 	private JTextField txtAlumno1;
 	private JTextField txtAlumno2;
 	private JTextField txtAlumno3;
@@ -122,10 +122,10 @@ public class Ventana_Horarios extends JFrame{
 		lblHorario.setBounds(30, 129, 61, 16);
 		this.getContentPane().add(lblHorario);
 
-		comboBox_3 = new JComboBox();
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_3.setBounds(101, 153, 74, 27);
-		this.getContentPane().add(comboBox_3);
+		horasInicio_1 = new JComboBox();
+		horasInicio_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_1.setBounds(101, 153, 74, 27);
+		this.getContentPane().add(horasInicio_1);
 
 		JLabel lblClase = new JLabel("Clase 2");
 		lblClase.setBounds(30, 188, 61, 16);
@@ -155,102 +155,102 @@ public class Ventana_Horarios extends JFrame{
 		lblDesde.setBounds(148, 129, 61, 16);
 		this.getContentPane().add(lblDesde);
 
-		comboBox_4 = new JComboBox();
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_4.setBounds(175, 153, 74, 27);
-		this.getContentPane().add(comboBox_4);
+		minutosInicio_1 = new JComboBox();
+		minutosInicio_1.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosInicio_1.setBounds(175, 153, 74, 27);
+		this.getContentPane().add(minutosInicio_1);
 
-		comboBox_5 = new JComboBox();
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_5.setBounds(269, 153, 74, 27);
-		this.getContentPane().add(comboBox_5);
+		horasFin_1 = new JComboBox();
+		horasFin_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_1.setBounds(269, 153, 74, 27);
+		this.getContentPane().add(horasFin_1);
 
-		comboBox_6 = new JComboBox();
-		comboBox_6.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_6.setBounds(101, 184, 74, 27);
-		this.getContentPane().add(comboBox_6);
+		horasInicio_2 = new JComboBox();
+		horasInicio_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_2.setBounds(101, 184, 74, 27);
+		this.getContentPane().add(horasInicio_2);
 
-		comboBox_7 = new JComboBox();
-		comboBox_7.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_7.setBounds(101, 212, 74, 27);
+		horasInicio_3 = new JComboBox();
+		horasInicio_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_3.setBounds(101, 212, 74, 27);
 
-		this.getContentPane().add(comboBox_7);
+		this.getContentPane().add(horasInicio_3);
 
-		comboBox_8 = new JComboBox();
-		comboBox_8.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_8.setBounds(101, 240, 74, 27);
-		this.getContentPane().add(comboBox_8);
+		horasInicio_4 = new JComboBox();
+		horasInicio_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_4.setBounds(101, 240, 74, 27);
+		this.getContentPane().add(horasInicio_4);
 
-		comboBox_9 = new JComboBox();
-		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_9.setBounds(101, 268, 74, 27);
-		this.getContentPane().add(comboBox_9);
+		horasInicio_5 = new JComboBox();
+		horasInicio_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_5.setBounds(101, 268, 74, 27);
+		this.getContentPane().add(horasInicio_5);
 
-		comboBox_13 = new JComboBox();
-		comboBox_13.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_13.setBounds(269, 184, 74, 27);
-		this.getContentPane().add(comboBox_13);
+		horasFin_2 = new JComboBox();
+		horasFin_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_2.setBounds(269, 184, 74, 27);
+		this.getContentPane().add(horasFin_2);
 
-		comboBox_14 = new JComboBox();
-		comboBox_14.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_14.setBounds(269, 212, 74, 27);
-		this.getContentPane().add(comboBox_14);
+		horasFin_3 = new JComboBox();
+		horasFin_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_3.setBounds(269, 212, 74, 27);
+		this.getContentPane().add(horasFin_3);
 
-		comboBox_15 = new JComboBox();
-		comboBox_15.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_15.setBounds(269, 240, 74, 27);
-		this.getContentPane().add(comboBox_15);
+		horasFin_4 = new JComboBox();
+		horasFin_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_4.setBounds(269, 240, 74, 27);
+		this.getContentPane().add(horasFin_4);
 
-		comboBox_16 = new JComboBox();
-		comboBox_16.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-		comboBox_16.setBounds(269, 268, 74, 27);
-		this.getContentPane().add(comboBox_16);
+		horasFin_5 = new JComboBox();
+		horasFin_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_5.setBounds(269, 268, 74, 27);
+		this.getContentPane().add(horasFin_5);
 
-		comboBox_20 = new JComboBox();
-		comboBox_20.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_20.setBounds(175, 184, 74, 27);
-		this.getContentPane().add(comboBox_20);
+		minutosInicio_2 = new JComboBox();
+		minutosInicio_2.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosInicio_2.setBounds(175, 184, 74, 27);
+		this.getContentPane().add(minutosInicio_2);
 
-		comboBox_21 = new JComboBox();
-		comboBox_21.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_21.setBounds(175, 212, 74, 27);
-		this.getContentPane().add(comboBox_21);
+		minutosInicio_3 = new JComboBox();
+		minutosInicio_3.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosInicio_3.setBounds(175, 212, 74, 27);
+		this.getContentPane().add(minutosInicio_3);
 
-		comboBox_22 = new JComboBox();
-		comboBox_22.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_22.setBounds(175, 240, 74, 27);
-		this.getContentPane().add(comboBox_22);
+		minutosInicio_4 = new JComboBox();
+		minutosInicio_4.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosInicio_4.setBounds(175, 240, 74, 27);
+		this.getContentPane().add(minutosInicio_4);
 
-		comboBox_23 = new JComboBox();
-		comboBox_23.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_23.setBounds(175, 268, 74, 27);
-		this.getContentPane().add(comboBox_23);
+		minutosInicio_5 = new JComboBox();
+		minutosInicio_5.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosInicio_5.setBounds(175, 268, 74, 27);
+		this.getContentPane().add(minutosInicio_5);
 
-		comboBox_27 = new JComboBox();
-		comboBox_27.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_27.setBounds(346, 153, 74, 27);
-		this.getContentPane().add(comboBox_27);
+		minutosFin_1 = new JComboBox();
+		minutosFin_1.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosFin_1.setBounds(346, 153, 74, 27);
+		this.getContentPane().add(minutosFin_1);
 
-		comboBox_28 = new JComboBox();
-		comboBox_28.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_28.setBounds(346, 184, 74, 27);
+		minutosFin_2 = new JComboBox();
+		minutosFin_2.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosFin_2.setBounds(346, 184, 74, 27);
 
-		this.getContentPane().add(comboBox_28);
+		this.getContentPane().add(minutosFin_2);
 
-		comboBox_29 = new JComboBox();
-		comboBox_29.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_29.setBounds(346, 212, 74, 27);
-		this.getContentPane().add(comboBox_29);
+		minutosFin_3 = new JComboBox();
+		minutosFin_3.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosFin_3.setBounds(346, 212, 74, 27);
+		this.getContentPane().add(minutosFin_3);
 
-		comboBox_30 = new JComboBox();
-		comboBox_30.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_30.setBounds(346, 240, 74, 27);
-		this.getContentPane().add(comboBox_30);
+		minutosFin_4 = new JComboBox();
+		minutosFin_4.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosFin_4.setBounds(346, 240, 74, 27);
+		this.getContentPane().add(minutosFin_4);
 
-		comboBox_31 = new JComboBox();
-		comboBox_31.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
-		comboBox_31.setBounds(346, 268, 74, 27);
-		this.getContentPane().add(comboBox_31);
+		minutosFin_5 = new JComboBox();
+		minutosFin_5.setModel(new DefaultComboBoxModel(new String[] {"00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		minutosFin_5.setBounds(346, 268, 74, 27);
+		this.getContentPane().add(minutosFin_5);
 
 		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
@@ -268,11 +268,8 @@ public class Ventana_Horarios extends JFrame{
 		btnAadirMsClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Añadir las clases a la BD
-				
-				BaseDeDatos.anyadirClases();	
-				
-				
-				
+				BaseDeDatos.anyadirSesiones();	
+					
 				
 				Ventana_Horarios.this.setVisible(false);
 				Ventana_Horarios.this.dispose();
@@ -330,8 +327,8 @@ public class Ventana_Horarios extends JFrame{
 	}
 	public boolean horaValida(){
 
-		hora_inicial= (comboBox_3.getSelectedIndex()*60)+comboBox_4.getSelectedIndex() ;
-		hora_final=(comboBox_5.getSelectedIndex()*60)+comboBox_27.getSelectedIndex();	
+		hora_inicial= (horasInicio_1.getSelectedIndex()*60)+minutosInicio_1.getSelectedIndex() ;
+		hora_final=(horasFin_1.getSelectedIndex()*60)+minutosFin_1.getSelectedIndex();	
 		System.out.println(hora_inicial);	
 		System.out.println(hora_final);
 
@@ -348,8 +345,8 @@ public class Ventana_Horarios extends JFrame{
 	}
 
 	public boolean horaValida1(){
-		hora_inicial= (comboBox_6.getSelectedIndex()*60)+comboBox_20.getSelectedIndex() ;
-		hora_final=(comboBox_13.getSelectedIndex()*60)+comboBox_28.getSelectedIndex();	
+		hora_inicial= (horasInicio_2.getSelectedIndex()*60)+minutosInicio_2.getSelectedIndex() ;
+		hora_final=(horasFin_2.getSelectedIndex()*60)+minutosFin_2.getSelectedIndex();	
 		System.out.println(hora_inicial);	
 		System.out.println(hora_final);
 		if (hora_inicial>hora_final){
@@ -363,8 +360,8 @@ public class Ventana_Horarios extends JFrame{
 	}
 
 	public boolean horaValida2(){
-		hora_inicial= (comboBox_8.getSelectedIndex()*60)+comboBox_22.getSelectedIndex() ;
-		hora_final=(comboBox_15.getSelectedIndex()*60)+comboBox_30.getSelectedIndex();	
+		hora_inicial= (horasInicio_4.getSelectedIndex()*60)+minutosInicio_4.getSelectedIndex() ;
+		hora_final=(horasFin_4.getSelectedIndex()*60)+minutosFin_4.getSelectedIndex();	
 		System.out.println(hora_inicial);	
 		System.out.println(hora_final);
 		if (hora_inicial>hora_final){
@@ -379,8 +376,8 @@ public class Ventana_Horarios extends JFrame{
 	}
 
 	public boolean horaValida3(){
-		hora_inicial= (comboBox_9.getSelectedIndex()*60)+comboBox_23.getSelectedIndex() ;
-		hora_final=(comboBox_16.getSelectedIndex()*60)+comboBox_31.getSelectedIndex();	
+		hora_inicial= (horasInicio_5.getSelectedIndex()*60)+minutosInicio_5.getSelectedIndex() ;
+		hora_final=(horasFin_5.getSelectedIndex()*60)+minutosFin_5.getSelectedIndex();	
 		System.out.println(hora_inicial);	
 		System.out.println(hora_final);
 		if (hora_inicial>hora_final){
@@ -395,8 +392,8 @@ public class Ventana_Horarios extends JFrame{
 	}
 
 	public boolean horaValida4(){
-		hora_inicial= (comboBox_7.getSelectedIndex()*60)+comboBox_21.getSelectedIndex() ;
-		hora_final=(comboBox_14.getSelectedIndex()*60)+comboBox_29.getSelectedIndex();	
+		hora_inicial= (horasInicio_3.getSelectedIndex()*60)+minutosInicio_3.getSelectedIndex() ;
+		hora_final=(horasFin_3.getSelectedIndex()*60)+minutosFin_3.getSelectedIndex();	
 		System.out.println(hora_inicial);	
 		System.out.println(hora_final);
 		if (hora_inicial>hora_final){
