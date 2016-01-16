@@ -245,7 +245,7 @@ public class Ventana_NewProfesor{
 		panel_colegio.add(label_2);
 
 		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Ingl\u00E9s", "Franc\u00E9s", "Alem\u00E1n"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Ingl\u00E9s", "Espa\u00F1ol", "Franc\u00E9s", "Alem\u00E1n"}));
 		comboBox_1.setBounds(401, 11, 146, 20);
 		panel_colegio.add(comboBox_1);
 		
@@ -265,7 +265,7 @@ public class Ventana_NewProfesor{
 		panel_escueladeidiomas.add(label_3);
 
 		JComboBox<String> comboBox_2 = new JComboBox<String>();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Espa\u00F1ol", "Ingl\u00E9s", "Franc\u00E9s", "Alem\u00E1n", "Italiano", "Chino", "Japon\u00E9s", "Ruso"}));
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Ingl\u00E9s", "Espa\u00F1ol", "Franc\u00E9s", "Alem\u00E1n", "Italiano", "Chino", "Japon\u00E9s", "Ruso"}));
 		comboBox_2.setBounds(143, 8, 108, 20);
 		panel_escueladeidiomas.add(comboBox_2);
 

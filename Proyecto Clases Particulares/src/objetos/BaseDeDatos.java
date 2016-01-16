@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import ventana.Ventana_Login;
 import ventana.Ventana_NewPersona;
@@ -27,7 +29,7 @@ public class BaseDeDatos {
 		try
 		{
 			// Crear una conexión de BD
-			connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:clasesparticulares.db");
 			statement = connection.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
 
@@ -104,6 +106,14 @@ public class BaseDeDatos {
 			}
 		});
 		hiloDB.start();
+	}
+	
+	public static void crearMensaje(String CodMensaje ,String DNIprofesor, String DNIalumno, boolean esProfe, String asunto, String contenido){	
+	Date myDate = new Date();
+	String fecha =new SimpleDateFormat("dd/MM/yyyy").format(myDate);	
+	final String mensaje = ("INSERT INTO MENSAJE VALUES '" + CodMensaje + "', '" + DNIprofesor + "', '" + DNIalumno +"', '" +
+				esProfe + "',"+ "'" + asunto + "', '" + contenido + "'");
+				insert(mensaje);		
 	}
 
 	/**
