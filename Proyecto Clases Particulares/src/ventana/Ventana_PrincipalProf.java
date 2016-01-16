@@ -42,6 +42,7 @@ import java.util.ArrayList;
 public class Ventana_PrincipalProf extends JFrame{
 
 	private static final long serialVersionUID = 1L;
+	final String[] columnasTablaClases = {"Hora", "Alumno"};
 	private JPanel panelInicio;
 	private JPanel panelMensajes;
 	private JPanel panel_Botones;
@@ -67,6 +68,9 @@ public class Ventana_PrincipalProf extends JFrame{
 	private ArrayList<Mensaje> a = new ArrayList<Mensaje>();
 	private TableModel modeloT;
 	private JFileChooser fcExaminar;
+	private JTable tablaClases;
+	private TableModel modeloTablaClases;
+	private ArrayList<String> arrayClases;
 	
 	public Ventana_PrincipalProf(String userName) {
 		setResizable(false);
@@ -228,6 +232,14 @@ public class Ventana_PrincipalProf extends JFrame{
 		JButton borrar_JBut = new JButton("Borrar");
 		borrar_JBut.setBounds(318, 300, 120, 23);
 		panelInicio.add(borrar_JBut);
+		
+		
+		//TODO crear modelo de la tabla
+		String[][] clases = pasarArrayLAArray(arrayClases);
+		modeloTablaClases = new DefaultTableModel(clases, columnasTablaClases);
+		tablaClases = new JTable();
+		tablaClases.setBounds(36, 270, 409, -205);		
+		panelInicio.add(tablaClases);
 
 		panelPerfil = new JPanel();
 		panelPerfil.setVisible(false);
@@ -365,6 +377,15 @@ public class Ventana_PrincipalProf extends JFrame{
 		this.fcExaminar = new JFileChooser();
 		FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes jpg, ico y png", "jpg", "png", "ico");
 		this.fcExaminar.setFileFilter(filtro);
+	}
+
+	private String[][] pasarArrayLAArray(ArrayList<String> arrayClases) {
+		// TODO terminar
+		String [][] devolver = null;
+		for(int i = 0; i<arrayClases.size(); i++){
+			
+		}
+		return devolver;
 	}
 
 	public static void main(String[] args) {

@@ -138,14 +138,12 @@ public class BaseDeDatos {
 
 	public static void anyadirAlumno(String username, String pass, String nombre, String apellido_1, String apellido_2, String dni, String f_ncto,
 			String tlf, String tipoU, String dir, String ciudad) {
-		// TODO Auto-generated method stub
 		String sentencia = ("INSERT INTO PERSONA VALUES '" + username + "', '" + pass + "', '" + nombre +"', '" + apellido_1 + "',"
 				+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "'");
 		insert(sentencia);
 	}
 
 	public static void anyadirSesiones(String horaIni, String horaFin, String fecha, String usernameA, String usernameP) {
-		// TODO Auto-generated method stub
 		String sentencia = ("INSERT INTO SESION VALUES '" + horaIni + "', '" + horaFin + "', '" + fecha + "', '" + usernameA + "', '" + usernameP + "'");
 		insert(sentencia);
 	}
