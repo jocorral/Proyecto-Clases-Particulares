@@ -34,15 +34,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import objetos.BaseDeDatos;
 import objetos.Mensaje;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.awt.Dimension;
+import java.awt.ScrollPane;
+import java.awt.Rectangle;
 
 public class Ventana_PrincipalProf extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	final String[] columnasTablaClases = {"Hora", "Alumno"};
+	final String fechaDeHoy = Calendar.DATE + "-" + Calendar.MONTH + "-" + Calendar.YEAR;
 	private JPanel panelInicio;
 	private JPanel panelMensajes;
 	private JPanel panel_Botones;
@@ -60,7 +66,6 @@ public class Ventana_PrincipalProf extends JFrame{
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField;
-	private JTable tablaBandejaEntrada;
 	Mensaje a1 = new Mensaje("Normal", "Usuario 3", "Usuario 1", "Clases Matematicas", "Hola, que tal? \n Me gustaria decidir la hora de mañana", "18:54", "20-12-2015");
 	Mensaje a2 = new Mensaje("Normal", "Usuario 1", "Usuario 4", "Clases Fisica", "Hola, que tal? \n Me gustaria decidir la hora del viernes", "15:12", "12-12-2015");
 	Mensaje a3 = new Mensaje("Normal", "Usuario 5", "Usuario 2", "Clases Sociales", "Hola, que tal? \n Me gustaria decidir la hora de la semana que viene", "16:30", "05-12-2015");
@@ -71,7 +76,8 @@ public class Ventana_PrincipalProf extends JFrame{
 	private JTable tablaClases;
 	private TableModel modeloTablaClases;
 	private ArrayList<String> arrayClases;
-	
+	private JTable table;
+
 	public Ventana_PrincipalProf(String userName) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -190,7 +196,7 @@ public class Ventana_PrincipalProf extends JFrame{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(25, 172, 418, 105);
 		panelMensajes.add(scrollPane);
-		
+
 		JTextPane textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 
@@ -232,10 +238,14 @@ public class Ventana_PrincipalProf extends JFrame{
 		JButton borrar_JBut = new JButton("Borrar");
 		borrar_JBut.setBounds(318, 300, 120, 23);
 		panelInicio.add(borrar_JBut);
+
+		//TODO cargar clases del dia en arrayClases
+		String horaIniSesion = BaseDeDatos.select("SELECT * FROM SESION WHERE USERNAME_P = '" + BaseDeDatos.getMiUser() + "' AND FECHA = '" + fechaDeHoy + "';", "H_INI");
+		String horaFinSesion = BaseDeDatos.select("SELECT * FROM SESION WHERE USERNAME_P = '" + BaseDeDatos.getMiUser() + "' AND FECHA = '" + fechaDeHoy + "';", "H_FIN");
+		String alumno = "";
 		
-		
-		//TODO crear modelo de la tabla
-		String[][] clases = pasarArrayLAArray(arrayClases);
+		arrayClases = new ArrayList<String>();
+		String[][] clases = pasarArrayLAArray(arrayClases, 2);
 		modeloTablaClases = new DefaultTableModel(clases, columnasTablaClases);
 		tablaClases = new JTable();
 		tablaClases.setBounds(36, 270, 409, -205);		
@@ -345,7 +355,11 @@ public class Ventana_PrincipalProf extends JFrame{
 		JLabel lblCiudad = new JLabel("Ciudad: ");
 		lblCiudad.setBounds(196, 110, 70, 18);
 		panelPerfil.add(lblCiudad);
-
+		
+				panelBandejaEntrada = new JPanel();
+				panelBandejaEntrada.setBounds(0, 0, 469, 352);
+				layeredPane.add(panelBandejaEntrada);
+				
 		//TODO Cambiar a BD 
 		a.add(a1);
 		a.add(a2);
@@ -363,27 +377,25 @@ public class Ventana_PrincipalProf extends JFrame{
 			dato[i][6] = a.get(i).getFecha();
 		}
 		modeloT = new DefaultTableModel( dato, new String[]{"Tipo Mensaje", "Para", "De", "Asunto", "Mensaje", "Hora", "Fecha"});
-		tablaBandejaEntrada = new JTable(modeloT);
-
-		panelBandejaEntrada = new JPanel();
-		panelBandejaEntrada.setBounds(0, 0, 469, 352);
-		layeredPane.add(panelBandejaEntrada);
-		// tablaBandejaEntrada.setBounds(x, y, width, height);
-		panelBandejaEntrada.add(tablaBandejaEntrada);
-
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		panelBandejaEntrada.add(scrollPane_1);
+		table = new JTable(modeloT);
+		scrollPane_1.setViewportView(table);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
+
 		this.fcExaminar = new JFileChooser();
 		FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imágenes jpg, ico y png", "jpg", "png", "ico");
 		this.fcExaminar.setFileFilter(filtro);
 	}
 
-	private String[][] pasarArrayLAArray(ArrayList<String> arrayClases) {
-		// TODO terminar
-		String [][] devolver = null;
-		for(int i = 0; i<arrayClases.size(); i++){
-			
+	private String[][] pasarArrayLAArray(ArrayList<String> array, int numCols) {
+		String[][] devolver = new String[array.size()][numCols];
+		for(int b = 0; b<(array.size()/numCols); b++){
+			for(int x = 0; x<numCols; x++){
+				devolver[b][x] = array.get(b*numCols+x);
+			}
 		}
 		return devolver;
 	}

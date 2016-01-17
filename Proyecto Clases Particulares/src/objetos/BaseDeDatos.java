@@ -63,7 +63,7 @@ public class BaseDeDatos {
 	public static void creaConexion(){
 		try{
 			// Crear una conexión de BD
-			connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:clasesparticulares.db");
 			statement = connection.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
 		}catch(SQLException e){
@@ -84,13 +84,13 @@ public class BaseDeDatos {
 	public static void crearPersona(String username, String pass, String nombre, String apellido_1, String apellido_2, String dni, String f_ncto,
 			String tlf, String tipoU, String dir, String ciudad){	
 		final String sentencia = ("INSERT INTO PERSONA VALUES '" + username + "', '" + pass + "', '" + nombre +"', '" + apellido_1 + "',"
-				+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "'");
+				+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "';");
 		final String nombreU = username;
 		
 		Thread hiloDB = new Thread( new Runnable() {
 			public void run(){
 				try {
-					ResultSet rs = statement.executeQuery( "SELECT * FROM PERSONA WHERE NOMBRE='" + nombreU + "'" );
+					ResultSet rs = statement.executeQuery( "SELECT * FROM PERSONA WHERE NOMBRE='" + nombreU + "';" );
 					if (rs.next()) { //La persona existe ya en la BD
 						Ventana_Login a = new Ventana_Login();
 						a.setLocationRelativeTo(null);
@@ -112,7 +112,7 @@ public class BaseDeDatos {
 	Date myDate = new Date();
 	String fecha =new SimpleDateFormat("dd/MM/yyyy").format(myDate);	
 	final String mensaje = ("INSERT INTO MENSAJE VALUES '" + CodMensaje + "', '" + DNIprofesor + "', '" + DNIalumno +"', '" +
-				esProfe + "',"+ "'" + asunto + "', '" + contenido + "'");
+				esProfe + "',"+ "'" + asunto + "', '" + contenido + "';");
 				insert(mensaje);		
 	}
 
@@ -136,15 +136,27 @@ public class BaseDeDatos {
 		(new Thread(r)).start();
 	}
 
+	public static String selectUnValor(String sentenciaSelect, String columna){
+		String devolver = "";
+		try{
+			 ResultSet rs = statement.executeQuery(sentenciaSelect);
+			 devolver = rs.getString(columna);
+		}catch(SQLException e){
+			System.out.println("No existe un valor para esa seleccion");
+		}finally{
+			return devolver;
+		}
+	}
+	
 	public static void anyadirAlumno(String username, String pass, String nombre, String apellido_1, String apellido_2, String dni, String f_ncto,
 			String tlf, String tipoU, String dir, String ciudad) {
 		String sentencia = ("INSERT INTO PERSONA VALUES '" + username + "', '" + pass + "', '" + nombre +"', '" + apellido_1 + "',"
-				+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "'");
+				+ "'" + apellido_2 + "', '" + dni + "', '" + f_ncto + "', '" + tlf + "', '" + tipoU + "', '" + dir + "', '" + ciudad + "';");
 		insert(sentencia);
 	}
 
 	public static void anyadirSesiones(String horaIni, String horaFin, String fecha, String usernameA, String usernameP) {
-		String sentencia = ("INSERT INTO SESION VALUES '" + horaIni + "', '" + horaFin + "', '" + fecha + "', '" + usernameA + "', '" + usernameP + "'");
+		String sentencia = ("INSERT INTO SESION VALUES '" + horaIni + "', '" + horaFin + "', '" + fecha + "', '" + usernameA + "', '" + usernameP + "';");
 		insert(sentencia);
 	}
 
