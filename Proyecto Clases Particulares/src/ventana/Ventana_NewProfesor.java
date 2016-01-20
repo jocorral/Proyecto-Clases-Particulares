@@ -42,31 +42,46 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JLayeredPane;
 
+import objetos.BaseDeDatos;
 import objetos.Persona;
 import objetos.Profesor;
 
 import java.awt.Label;
 import java.awt.Button;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButton;
+
 import java.awt.Color;
+import java.beans.Statement;
+import java.sql.SQLException;
 
 
 public class Ventana_NewProfesor{
 
 	private Persona persona;
 	private JFrame frame;
-	private  boolean estaRelleno ;
-	private JTextField textField;
+	private boolean estaRelleno ;
 	private JSlider slider;
-	private JTextField textField_1;
+	private JTextField txtAsig;
 	private JComboBox<String> comboBox_tipo; 
 	private JTextPane textPane;
 	private JPanel panel_escueladeidiomas;
 	private JPanel panel_colegio;
-	
+	private JComboBox<String> eligeIdiomaCombo;
+	private JComboBox<String> eligeIdiomaEscCombo;
+	private JRadioButton rButPrimaria;
+	private JRadioButton rButESO;
+	private JRadioButton rButBachi;
+	private JCheckBox checkBox;
+	private JCheckBox checkBox_1;
+	private JCheckBox checkBox_2;
+	private JCheckBox checkBox_3;
+	private JCheckBox checkBox_4;
+	private JCheckBox checkBox_5;
+
 	/**
 	 * Launch the application.
 	 */
@@ -126,9 +141,11 @@ public class Ventana_NewProfesor{
 				else{
 					int n = 0;
 					String textoCurriculum;
-					n=(int)slider.getValue();
+						n=(int)slider.getValue();				
 					textoCurriculum = textPane.getText();
-					Profesor nuevoProfesor = new Profesor(persona, n, textoCurriculum);
+					BaseDeDatos.insert("INSERT INTO PROFESOR VALUES('" + Ventana_NewPersona.getDni() + "', '"
+							+ n + "', '" + textoCurriculum.toUpperCase() + "')");
+					System.out.println("Profesor creado");
 					frame.dispose();
 					Ventana_Login login = new Ventana_Login();
 					login.setVisible(true);
@@ -178,15 +195,6 @@ public class Ventana_NewProfesor{
 		textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 
-		textField = new JTextField();
-		textField.setBounds(485, 146, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-
-		JCheckBox chckbxOtro = new JCheckBox("Otro:");
-		chckbxOtro.setBounds(414, 142, 65, 23);
-		frame.getContentPane().add(chckbxOtro);
-
 		JSeparator separator = new JSeparator();
 		separator.setBounds(44, 177, 605, 16);
 		frame.getContentPane().add(separator);
@@ -197,7 +205,7 @@ public class Ventana_NewProfesor{
 		frame.getContentPane().add(lblTipoAsig);
 
 		comboBox_tipo = new JComboBox<String>();
-		comboBox_tipo.setModel(new DefaultComboBoxModel(new String[] {"    -  Elija tipo  -", "Colegio", "Escuela de idiomas"}));
+		comboBox_tipo.setModel(new DefaultComboBoxModel(new String[] {"-  Elija tipo  -", "Colegio", "Escuela de idiomas"}));
 		comboBox_tipo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboBox_tipo.setBounds(266, 311, 123, 20);
 		frame.getContentPane().add(comboBox_tipo);
@@ -213,45 +221,41 @@ public class Ventana_NewProfesor{
 		label.setBounds(77, 13, 71, 15);
 		panel_colegio.add(label);
 
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(158, 11, 167, 20);
-		panel_colegio.add(textField_1);
+		txtAsig = new JTextField();
+		txtAsig.setColumns(10);
+		txtAsig.setBounds(158, 11, 167, 20);
+		panel_colegio.add(txtAsig);
 
 		JLabel label_1 = new JLabel("Nivel:");
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_1.setBounds(77, 45, 46, 14);
 		panel_colegio.add(label_1);
 
-		JRadioButton radioButton = new JRadioButton("Primaria");
-		radioButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radioButton.setBackground(Color.LIGHT_GRAY);
-		radioButton.setBounds(138, 41, 71, 23);
-		panel_colegio.add(radioButton);
+		rButPrimaria = new JRadioButton("Primaria");
+		rButPrimaria.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		rButPrimaria.setBackground(Color.LIGHT_GRAY);
+		rButPrimaria.setBounds(138, 41, 71, 23);
+		panel_colegio.add(rButPrimaria);
 
-		JRadioButton radioButton_1 = new JRadioButton("ESO");
-		radioButton_1.setBackground(Color.LIGHT_GRAY);
-		radioButton_1.setBounds(248, 42, 52, 23);
-		panel_colegio.add(radioButton_1);
+		rButESO = new JRadioButton("ESO");
+		rButESO.setBackground(Color.LIGHT_GRAY);
+		rButESO.setBounds(248, 42, 52, 23);
+		panel_colegio.add(rButESO);
 
-		JRadioButton radioButton_2 = new JRadioButton("Bachillerato");
-		radioButton_2.setBackground(Color.LIGHT_GRAY);
-		radioButton_2.setBounds(333, 42, 97, 23);
-		panel_colegio.add(radioButton_2);
+		rButBachi = new JRadioButton("Bachillerato");
+		rButBachi.setBackground(Color.LIGHT_GRAY);
+		rButBachi.setBounds(333, 42, 97, 23);
+		panel_colegio.add(rButBachi);
 
 		JLabel label_2 = new JLabel("Idioma:");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_2.setBounds(345, 13, 46, 14);
 		panel_colegio.add(label_2);
 
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Ingl\u00E9s", "Espa\u00F1ol", "Franc\u00E9s", "Alem\u00E1n"}));
-		comboBox_1.setBounds(401, 11, 146, 20);
-		panel_colegio.add(comboBox_1);
-		
-		JButton button = new JButton("Ofrezco m\u00E1s");
-		button.setBounds(468, 64, 127, 23);
-		panel_colegio.add(button);
+		eligeIdiomaCombo = new JComboBox<String>();
+		eligeIdiomaCombo.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Ingl\u00E9s", "Espa\u00F1ol", "Franc\u00E9s", "Alem\u00E1n"}));
+		eligeIdiomaCombo.setBounds(401, 11, 146, 20);
+		panel_colegio.add(eligeIdiomaCombo);
 
 		panel_escueladeidiomas = new JPanel();
 		panel_escueladeidiomas.setVisible(false);
@@ -264,49 +268,132 @@ public class Ventana_NewProfesor{
 		label_3.setBounds(87, 10, 46, 15);
 		panel_escueladeidiomas.add(label_3);
 
-		JComboBox<String> comboBox_2 = new JComboBox<String>();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Ingl\u00E9s", "Espa\u00F1ol", "Franc\u00E9s", "Alem\u00E1n", "Italiano", "Chino", "Japon\u00E9s", "Ruso"}));
-		comboBox_2.setBounds(143, 8, 108, 20);
-		panel_escueladeidiomas.add(comboBox_2);
+		eligeIdiomaEscCombo = new JComboBox<String>();
+		eligeIdiomaEscCombo.setModel(new DefaultComboBoxModel(new String[] {"- Elija idioma -", "Euskera", "Ingl\u00E9s", "Espa\u00F1ol", "Franc\u00E9s", "Alem\u00E1n", "Italiano", "Chino", "Japon\u00E9s", "Ruso"}));
+		eligeIdiomaEscCombo.setBounds(143, 8, 108, 20);
+		panel_escueladeidiomas.add(eligeIdiomaEscCombo);
 
 		JLabel label_4 = new JLabel("Nivel:");
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 		label_4.setBounds(283, 10, 46, 14);
 		panel_escueladeidiomas.add(label_4);
 
-		JCheckBox checkBox = new JCheckBox("A1");
+		checkBox = new JCheckBox("A1");
 		checkBox.setBackground(Color.LIGHT_GRAY);
 		checkBox.setBounds(335, 7, 47, 23);
 		panel_escueladeidiomas.add(checkBox);
 
-		JCheckBox checkBox_1 = new JCheckBox("A2");
+		checkBox_1 = new JCheckBox("A2");
 		checkBox_1.setBackground(Color.LIGHT_GRAY);
 		checkBox_1.setBounds(335, 33, 47, 23);
 		panel_escueladeidiomas.add(checkBox_1);
 
-		JCheckBox checkBox_2 = new JCheckBox("B1");
+		checkBox_2 = new JCheckBox("B1");
 		checkBox_2.setBackground(Color.LIGHT_GRAY);
 		checkBox_2.setBounds(408, 7, 46, 23);
 		panel_escueladeidiomas.add(checkBox_2);
 
-		JCheckBox checkBox_3 = new JCheckBox("B2");
+		checkBox_3 = new JCheckBox("B2");
 		checkBox_3.setBackground(Color.LIGHT_GRAY);
 		checkBox_3.setBounds(408, 33, 46, 23);
 		panel_escueladeidiomas.add(checkBox_3);
 
-		JCheckBox checkBox_4 = new JCheckBox("C1");
+		checkBox_4 = new JCheckBox("C1");
 		checkBox_4.setBackground(Color.LIGHT_GRAY);
 		checkBox_4.setBounds(481, 8, 46, 20);
 		panel_escueladeidiomas.add(checkBox_4);
 
-		JCheckBox checkBox_5 = new JCheckBox("C2");
+		checkBox_5 = new JCheckBox("C2");
 		checkBox_5.setBackground(Color.LIGHT_GRAY);
 		checkBox_5.setBounds(481, 37, 46, 19);
 		panel_escueladeidiomas.add(checkBox_5);
-		
-		JButton button_1 = new JButton("Ofrezco m\u00E1s");
-		button_1.setBounds(481, 64, 124, 23);
-		panel_escueladeidiomas.add(button_1);
+
+		JButton ofrezcoMasJBut = new JButton("Ofrezco m\u00E1s");
+		ofrezcoMasJBut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String codigoAsig = BaseDeDatos.selectUnValor("SELECT * FROM ASIG WHERE NOMBRE = '" + txtAsig.getText().toUpperCase() +"'", "COD");
+				if(codigoAsig.equals(null)){
+					int codigo = Integer.parseInt(BaseDeDatos.selectUnValor("SELECT * FROM ASIG WHERE MAX(COD)", "COD"))+1;
+					codigoAsig = codigo + "";
+					BaseDeDatos.insert("INSERT INTO ASIGNATURA VALUES ('" + txtAsig.getText().toUpperCase() + "', '" + codigoAsig + "')");
+				}
+				String idioma = eligeIdiomaCombo.getSelectedItem().toString();
+				if(idioma.equals("- Elija idioma -")){
+					JOptionPane.showMessageDialog(frame, "Falta por indicar el idioma de la asignatura.", "Fallo en el idioma", JOptionPane.ERROR_MESSAGE);
+				}else{
+					String codIdioma = BaseDeDatos.selectUnValor("SELECT * FROM IDIOMA WHERE NOMBRE = '" + idioma.toUpperCase() + "'", "COD");
+					if(rButPrimaria.isSelected()){
+						BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '100', '" + codIdioma + "')");
+					}
+					if(rButESO.isSelected()){
+						BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '101', '" + codIdioma + "')");
+					}
+					if(rButBachi.isSelected()){
+						BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '102', '" + codIdioma + "')");
+					}else if(!rButPrimaria.isSelected() && !rButESO.isSelected()){
+						JOptionPane.showMessageDialog(frame, "Falta por indicar el nivel de la asignatura.", "Fallo en el nivel", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+
+				txtAsig.setText("");
+				eligeIdiomaCombo.setSelectedIndex(0);
+				rButPrimaria.setSelected(false);
+				rButESO.setSelected(false);
+				rButBachi.setSelected(false);
+			}
+		});
+		ofrezcoMasJBut.setBounds(468, 64, 127, 23);
+		panel_colegio.add(ofrezcoMasJBut);
+
+		JButton ofrezcoMasJBut2 = new JButton("Ofrezco m\u00E1s");
+		ofrezcoMasJBut2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String asignatura = eligeIdiomaEscCombo.getSelectedItem().toString();
+				if(asignatura.equals("- Elija idioma -")){
+					JOptionPane.showMessageDialog(frame, "Falta por indicar el idioma de la asignatura.", "Fallo en el idioma", JOptionPane.ERROR_MESSAGE);	
+				}else{
+					String codigoAsig = BaseDeDatos.selectUnValor("SELECT * FROM ASIGNATURA WHERE NOMBRE = '" + asignatura.toUpperCase() + "'", "COD");
+					String idioma = eligeIdiomaCombo.getSelectedItem().toString();
+					if(idioma.equals("- Elija idioma -")){
+						JOptionPane.showMessageDialog(frame, "Falta por indicar el idioma de la asignatura.", "Fallo en el idioma", JOptionPane.ERROR_MESSAGE);
+					}else{
+						String codIdioma = BaseDeDatos.selectUnValor("SELECT * FROM IDIOMA WHERE NOMBRE = '" + idioma.toUpperCase() + "'", "COD");
+						if(checkBox.isSelected()){
+							BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '103', '" + codIdioma + "')");
+						}
+						if(checkBox_1.isSelected()){
+							BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '104', '" + codIdioma + "')");
+						}
+						if(checkBox_2.isSelected()){
+							BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '105', '" + codIdioma + "')");
+						}
+						if(checkBox_3.isSelected()){
+							BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '106', '" + codIdioma + "')");
+						}
+						if(checkBox_4.isSelected()){
+							BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '107', '" + codIdioma + "')");
+						}
+						if(checkBox_5.isSelected()){
+							BaseDeDatos.insert("INSERT INTO OFRECE VALUES ('" + Ventana_Login.getMiDNI() + "', '" + codigoAsig + "', '108', '" + codIdioma + "')");
+						}else if(!checkBox.isSelected() && !checkBox_1.isSelected() && !checkBox_2.isSelected() && !checkBox_3.isSelected() &&
+								!checkBox_4.isSelected() && !checkBox_5.isSelected()){
+							JOptionPane.showMessageDialog(frame, "Falta por indicar el nivel de la asignatura.", "Fallo en el nivel", JOptionPane.ERROR_MESSAGE);
+						}
+						System.out.println("El profesor ahora ofrece las asignaturas indicadas");
+					}
+				}
+				txtAsig.setText("");
+				eligeIdiomaEscCombo.setSelectedIndex(0);
+				checkBox.setSelected(false);
+				checkBox_1.setSelected(false);
+				checkBox_2.setSelected(false);
+				checkBox_3.setSelected(false);
+				checkBox_4.setSelected(false);
+				checkBox_5.setSelected(false);
+			}
+		});
+		ofrezcoMasJBut2.setBounds(481, 64, 124, 23);
+		panel_escueladeidiomas.add(ofrezcoMasJBut2);
 
 		comboBox_tipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -329,15 +416,15 @@ public class Ventana_NewProfesor{
 		String textoCurriculum;
 		n=(int)slider.getValue(); 
 		textoCurriculum = textPane.getText();
-		// TODO conseguir todas las clases de profesor
-		estaRelleno=true;
-		if(n == 0  || textoCurriculum.equals("")){
-			estaRelleno=false;
+		if((eligeIdiomaCombo.getSelectedItem().equals("- Elija idioma -") && eligeIdiomaEscCombo.getSelectedItem().equals("- Elija idioma -")) || (!eligeIdiomaCombo.getSelectedItem().equals("- Elija idioma -") && txtAsig.getText().equals("")) ||
+				((!rButPrimaria.isSelected() && !rButESO.isSelected() && !rButBachi.isSelected()) && (!checkBox.isSelected() && !checkBox_1.isSelected() && !checkBox_2.isSelected() &&
+						!checkBox_3.isSelected() && !checkBox_4.isSelected() && !checkBox_5.isSelected())) ||textoCurriculum.equals("")){	
+			return false;
 		}
 		System.out.println("Precio/Hora: "+n);
 		System.out.println("Curriculum: " + textoCurriculum);
 		System.out.println(estaRelleno);
-		
-		return estaRelleno;
+
+		return true;
 	}
 }

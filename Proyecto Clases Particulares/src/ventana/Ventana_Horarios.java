@@ -1,12 +1,11 @@
 package ventana;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+
+
 import java.awt.Toolkit;
 
 import javax.swing.JList;
@@ -14,15 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
-import java.awt.Label;
-
 import javax.swing.JButton;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Rectangle;
 
 import javax.swing.JTextField;
 
@@ -37,7 +32,6 @@ public class Ventana_Horarios extends JFrame{
 	private JButton btnAtras;
 	private  int hora_inicial;
 	private int hora_final;
-	private boolean hora_correcta;
 	private JComboBox comboMes;
 	private JComboBox comboAnyo;
 	private JComboBox comboDia;
@@ -78,7 +72,9 @@ public class Ventana_Horarios extends JFrame{
 	/**
 	 * Initialize the contents of the this.
 	 */
-	private void initialize() {
+	private void initialize(){
+		
+		
 		this.setResizable(false);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(Ventana_NewPersona.class.getResource("/imagenes/Logo1.JPG")));
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -102,13 +98,24 @@ public class Ventana_Horarios extends JFrame{
 		this.getContentPane().add(lblAo);
 
 		comboMes = new JComboBox();
-		comboMes.setModel(new DefaultComboBoxModel(new String[] {"Enero\t\t", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre ", "Noviembre", "Diciembre"}));
+		comboMes.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre ", "Noviembre", "Diciembre"}));
+		comboMes.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int anyo = Integer.parseInt(comboAnyo.getSelectedItem().toString());
+				if(comboMes.getSelectedItem().toString().equals("Febrero") && anyo%4==0){
+					comboDia.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
+				}else if(comboMes.getSelectedItem().toString().equals("Febrero")){
+					comboDia.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
+				}
+			}
+		});
 		comboMes.setMaximumRowCount(12);
 		comboMes.setBounds(237, 60, 117, 27);
 		this.getContentPane().add(comboMes);
 
 		comboAnyo = new JComboBox();
-		comboAnyo.setModel(new DefaultComboBoxModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"}));
+		comboAnyo.setModel(new DefaultComboBoxModel(new String[] {"2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"}));
 		comboAnyo.setBounds(425, 60, 98, 27);
 		this.getContentPane().add(comboAnyo);
 
@@ -123,7 +130,7 @@ public class Ventana_Horarios extends JFrame{
 		this.getContentPane().add(lblHorario);
 
 		horasInicio_1 = new JComboBox();
-		horasInicio_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasInicio_1.setBounds(101, 153, 74, 27);
 		this.getContentPane().add(horasInicio_1);
 
@@ -161,48 +168,48 @@ public class Ventana_Horarios extends JFrame{
 		this.getContentPane().add(minutosInicio_1);
 
 		horasFin_1 = new JComboBox();
-		horasFin_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_1.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasFin_1.setBounds(269, 153, 74, 27);
 		this.getContentPane().add(horasFin_1);
 
 		horasInicio_2 = new JComboBox();
-		horasInicio_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasInicio_2.setBounds(101, 184, 74, 27);
 		this.getContentPane().add(horasInicio_2);
 
 		horasInicio_3 = new JComboBox();
-		horasInicio_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasInicio_3.setBounds(101, 212, 74, 27);
 
 		this.getContentPane().add(horasInicio_3);
 
 		horasInicio_4 = new JComboBox();
-		horasInicio_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasInicio_4.setBounds(101, 240, 74, 27);
 		this.getContentPane().add(horasInicio_4);
 
 		horasInicio_5 = new JComboBox();
-		horasInicio_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasInicio_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasInicio_5.setBounds(101, 268, 74, 27);
 		this.getContentPane().add(horasInicio_5);
 
 		horasFin_2 = new JComboBox();
-		horasFin_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_2.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasFin_2.setBounds(269, 184, 74, 27);
 		this.getContentPane().add(horasFin_2);
 
 		horasFin_3 = new JComboBox();
-		horasFin_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_3.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasFin_3.setBounds(269, 212, 74, 27);
 		this.getContentPane().add(horasFin_3);
 
 		horasFin_4 = new JComboBox();
-		horasFin_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_4.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasFin_4.setBounds(269, 240, 74, 27);
 		this.getContentPane().add(horasFin_4);
 
 		horasFin_5 = new JComboBox();
-		horasFin_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4 ", "5 ", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		horasFin_5.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
 		horasFin_5.setBounds(269, 268, 74, 27);
 		this.getContentPane().add(horasFin_5);
 
@@ -270,9 +277,9 @@ public class Ventana_Horarios extends JFrame{
 				// TODO Añadir las clases a la BD
 				if(txtAlumno1.getText().equals(null) ||txtAlumno2.getText().equals(null) || txtAlumno3.getText().equals(null) ||
 						txtAlumno4.getText().equals(null) ||txtAlumno5.getText().equals(null) ||
-						!horaValida(horasInicio_1, minutosInicio_1, horasFin_1, minutosFin_1)==false||!horaValida(horasInicio_2, minutosInicio_2, horasFin_2, minutosFin_2)==false||
-						!horaValida(horasInicio_3, minutosInicio_3, horasFin_3, minutosFin_3)==false||!horaValida(horasInicio_4, minutosInicio_4, horasFin_4, minutosFin_4)==false||
-						!horaValida(horasInicio_5, minutosInicio_5, horasFin_5, minutosFin_5)==false){
+						!horaValida(horasInicio_1, minutosInicio_1, horasFin_1, minutosFin_1)||!horaValida(horasInicio_2, minutosInicio_2, horasFin_2, minutosFin_2)||
+						!horaValida(horasInicio_3, minutosInicio_3, horasFin_3, minutosFin_3)||!horaValida(horasInicio_4, minutosInicio_4, horasFin_4, minutosFin_4)||
+						!horaValida(horasInicio_5, minutosInicio_5, horasFin_5, minutosFin_5)){
 					JOptionPane.showMessageDialog(Ventana_Horarios.this, "Aún se pueden añadir más clases en esta ventana o ha dejado alguna casilla de alumno vacía.", "Operación innecesaria", JOptionPane.ERROR_MESSAGE);
 				}else{
 					String horaInicio1 = horasInicio_1.getSelectedItem().toString() + minutosInicio_1.getSelectedItem().toString();
@@ -291,7 +298,7 @@ public class Ventana_Horarios extends JFrame{
 					String horaFin5 = horasFin_5.getSelectedItem().toString() + minutosFin_5.getSelectedItem().toString();
 					String alumno_UN5 = txtAlumno5.getText();
 					String fecha = comboDia.getSelectedItem().toString() + "" + comboMes.getSelectedItem().toString() + "" + comboAnyo.getSelectedItem().toString();
-					String profe_UN = BaseDeDatos.getMiUser();
+					String profe_UN = Ventana_Login.getMiUser();
 					BaseDeDatos.anyadirSesiones(horaInicio1, horaFin1, fecha, alumno_UN1, profe_UN);	
 					BaseDeDatos.anyadirSesiones(horaInicio2, horaFin2, fecha, alumno_UN2, profe_UN);
 					BaseDeDatos.anyadirSesiones(horaInicio3, horaFin3, fecha, alumno_UN3, profe_UN);
@@ -311,17 +318,55 @@ public class Ventana_Horarios extends JFrame{
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(horaValida(horasInicio_1, minutosInicio_1, horasFin_1, minutosFin_1)==false||horaValida(horasInicio_2, minutosInicio_2, horasFin_2, minutosFin_2)==false||
-						horaValida(horasInicio_3, minutosInicio_3, horasFin_3, minutosFin_3)==false||horaValida(horasInicio_4, minutosInicio_4, horasFin_4, minutosFin_4)==false||
-						horaValida(horasInicio_5, minutosInicio_5, horasFin_5, minutosFin_5)==false){
-					String message="la hora final acaba antes de la hora inicial";
-					System.out.println(message);
-					JOptionPane.showMessageDialog(Ventana_Horarios.this, message,"¡Casillas vacías!", JOptionPane.ERROR_MESSAGE);
-				}
-				else{
+				
+					String hora_ini;
+					String hora_fin;
+					String mes = comboMes.getSelectedItem().toString();
+					String fecha = comboDia.getSelectedItem().toString() + "-" + darMes(mes) + "-" + comboAnyo.getSelectedItem().toString();;
+					String sentencia;
+					if(horaValida(horasInicio_1, minutosInicio_1, horasFin_1, minutosFin_1) && !txtAlumno1.equals(null)){
+						hora_ini = horasInicio_1.getSelectedItem().toString() + minutosInicio_1.getSelectedItem().toString();
+						hora_fin = horasFin_1.getSelectedItem().toString() + minutosFin_1.getSelectedItem().toString();
+						sentencia = "INSERT INTO SESION VALUES('" + hora_ini + "', '" + hora_fin + "', '" + fecha + "', '" + txtAlumno1.getText().toUpperCase() + "', '" + Ventana_Login.getMiUser().toUpperCase() + "')";
+						System.out.println(sentencia);
+						BaseDeDatos.insert(sentencia);
+					}
+					if(horaValida(horasInicio_2, minutosInicio_2, horasFin_2, minutosFin_2) && !txtAlumno2.equals("")){
+						hora_ini = horasInicio_2.getSelectedItem().toString() + minutosInicio_2.getSelectedItem().toString();
+						hora_fin = horasFin_2.getSelectedItem().toString() + minutosFin_2.getSelectedItem().toString();
+						sentencia = "INSERT INTO SESION VALUES('" + hora_ini + "', '" + hora_fin + "', '" + fecha + "', '" + txtAlumno2.getText().toUpperCase() + "', '" + Ventana_Login.getMiUser().toUpperCase() + "')";
+						System.out.println(sentencia);
+						BaseDeDatos.insert(sentencia);
+					}
+					if(horaValida(horasInicio_3, minutosInicio_3, horasFin_3, minutosFin_3) && !txtAlumno3.equals("")){
+						hora_ini = horasInicio_3.getSelectedItem().toString() + minutosInicio_3.getSelectedItem().toString();
+						hora_fin = horasFin_3.getSelectedItem().toString() + minutosFin_3.getSelectedItem().toString();
+						sentencia = "INSERT INTO SESION VALUES('" + hora_ini + "', '" + hora_fin + "', '" + fecha + "', '" + txtAlumno3.getText().toUpperCase() + "', '" + Ventana_Login.getMiUser().toUpperCase() + "')";
+						System.out.println(sentencia);
+						BaseDeDatos.insert(sentencia);
+					}
+					if(horaValida(horasInicio_4, minutosInicio_4, horasFin_4, minutosFin_4) && !txtAlumno4.equals("")){
+						hora_ini = horasInicio_4.getSelectedItem().toString() + minutosInicio_4.getSelectedItem().toString();
+						hora_fin = horasFin_4.getSelectedItem().toString() + minutosFin_4.getSelectedItem().toString();
+						sentencia = "INSERT INTO SESION VALUES('" + hora_ini + "', '" + hora_fin + "', '" + fecha + "', '" + txtAlumno4.getText().toUpperCase() + "', '" + Ventana_Login.getMiUser().toUpperCase() + "')";
+						System.out.println(sentencia);
+						BaseDeDatos.insert(sentencia);
+					}
+					if(horaValida(horasInicio_5, minutosInicio_5, horasFin_5, minutosFin_5) && !txtAlumno5.equals("")){
+						hora_ini = horasInicio_5.getSelectedItem().toString() + minutosInicio_5.getSelectedItem().toString();
+						hora_fin = horasFin_5.getSelectedItem().toString() + minutosFin_5.getSelectedItem().toString();
+						sentencia = "INSERT INTO SESION VALUES('" + hora_ini + "', '" + hora_fin + "', '" + fecha + "', '" + txtAlumno5.getText().toUpperCase() + "', '" + Ventana_Login.getMiUser().toUpperCase() + "')";
+						System.out.println(sentencia);
+						BaseDeDatos.insert(sentencia);
+					}else if((!horaValida(horasInicio_1, minutosInicio_1, horasFin_1, minutosFin_1) && txtAlumno1.equals("")) && (!horaValida(horasInicio_2, minutosInicio_2, horasFin_2, minutosFin_2) && txtAlumno2.equals("")) && 
+							(!horaValida(horasInicio_3, minutosInicio_3, horasFin_3, minutosFin_3) && txtAlumno3.equals("")) && (horaValida(horasInicio_4, minutosInicio_4, horasFin_4, minutosFin_4) && !txtAlumno4.equals(""))){
+						System.out.println("FALLOOOOOOOOOOOOOOOOOO");
+					}
 
-				}
+				
 			}
+
+			
 		});
 		btnGuardar.setBounds(352, 331, 117, 29);
 		this.getContentPane().add(btnGuardar);
@@ -352,22 +397,45 @@ public class Ventana_Horarios extends JFrame{
 		getContentPane().add(txtAlumno5);
 	}
 	public boolean horaValida(JComboBox horaIni, JComboBox minutosIni, JComboBox horaFin, JComboBox minutosFin ){
-
-		hora_inicial= (horaIni.getSelectedIndex()*60)+minutosIni.getSelectedIndex() ;
-		hora_final=(horaFin.getSelectedIndex()*60)+minutosFin.getSelectedIndex();	
-		System.out.println(hora_inicial);	
-		System.out.println(hora_final);
-
-		if (hora_inicial>hora_final){
-			hora_correcta=false;
-			System.out.println(hora_correcta);
-			return hora_correcta;
-
+		hora_inicial = (horaIni.getSelectedIndex()*60) + minutosIni.getSelectedIndex() ;
+		hora_final = (horaFin.getSelectedIndex()*60)+minutosFin.getSelectedIndex();	
+		if (hora_inicial>=hora_final){
+			return false;
 		}
 		else{
-			hora_correcta=true;
-			return hora_correcta;
+			return true;
 		}		
 	}
-
+	private static String darMes(String mesEnMinus) {
+		String mes = "";
+		String mesEnMayus = mesEnMinus.toUpperCase();
+		if(mesEnMayus.equals("ENERO")){
+			mes = "01";
+		}else if(mesEnMayus.equals("FEBRERO")){
+			mes = "02";
+		}else if(mesEnMayus.equals("MARZO")){
+			mes = "03";
+		}else if(mesEnMayus.equals("ABRIL")){
+			mes = "04";
+		}else if(mesEnMayus.equals("MAYO")){
+			mes = "05";
+		}else if(mesEnMayus.equals("JUNIO")){
+			mes = "06";
+		}else if(mesEnMayus.equals("JULIO")){
+			mes = "07";
+		}else if(mesEnMayus.equals("AGOSTO")){
+			mes = "08";
+		}else if(mesEnMayus.equals("SEPTIEMBRE")){
+			mes = "09";
+		}else if(mesEnMayus.equals("OCTUBRE")){
+			mes = "10";
+		}else if(mesEnMayus.equals("NOVIEMBRE")){
+			mes = "11";
+		}else if(mesEnMayus.equals("DICIEMBRE")){
+			mes = "12";
+		}
+		return mes;
+	}
+	
+	
 }

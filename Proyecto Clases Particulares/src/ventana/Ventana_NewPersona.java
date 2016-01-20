@@ -50,6 +50,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 	private JButton cancelar_JButton;
 	private JButton guardar_JButton;
 
+	private static String dni;
 
 	/**
 	 * Launch the application.
@@ -108,7 +109,17 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 
 		comboMes = new JComboBox();
 		comboMes.setModel(new DefaultComboBoxModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"}));
-
+		comboMes.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int anyo = Integer.parseInt(comboAnyo.getSelectedItem().toString());
+				if(comboMes.getSelectedItem().toString().equals("Febrero") && anyo%4==0){
+					comboDias.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"}));
+				}else if(comboMes.getSelectedItem().toString().equals("Febrero")){
+					comboDias.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"}));
+				}
+			}
+		});
 		comboAnyo = new JComboBox();
 		comboAnyo.setModel(new DefaultComboBoxModel(new String[] {"1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009"}));
 
@@ -350,8 +361,7 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 
 					String message;
 					String casilV = "";
-					Integer DNInums =  Integer.parseInt(textField_DNI.getText().substring(0, 7));
-					Character DNIletra = textField_DNI.getText().charAt(8);
+					dni = textField_DNI.getText();
 					if(textField_UserName.getText().equals(""))
 						casilV = casilV + " \n - Nombre de usuario";
 					if(textField_Cont1.getText().equals(""))
@@ -360,8 +370,6 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 						casilV = casilV + " \n - Repetir contraseña";
 					if(textField_Nom.getText().equals(""))
 						casilV = casilV + " \n - Nombre";
-					if(textField_DNI.getText().equals("") || !(DNInums instanceof Integer) || !(DNIletra instanceof Character))
-						casilV = casilV + " \n - DNI";
 					if(textField_Ape1.getText().equals(""))
 						casilV = casilV + " \n - Apellido 1";
 					if(textField_Ape2.getText().equals(""))
@@ -442,6 +450,9 @@ public class Ventana_NewPersona extends JFrame implements ActionListener{
 				}
 			}
 		}
+	}
+	public static String getDni(){
+		return dni;
 	}
 }
 
