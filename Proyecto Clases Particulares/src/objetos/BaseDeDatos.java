@@ -245,5 +245,22 @@ public class BaseDeDatos{
 			return arrayMensajes;	
 		}
 
-		
+		public static String probarBD(String usuario){			
+			String	devolver="hola";			
+			try{				
+				String exe= "SELECT USERNAME FROM PERSONA WHERE  USERNAME = '"+usuario+"' ";
+				ResultSet rs = statement.executeQuery(exe);
+				
+				while(rs.next()){
+					 devolver = rs.getString("USERNAME");
+					
+					System.out.println("2"  +devolver);
+				}
+				}catch(SQLException e){
+					System.out.println("No existe un valor para esa seleccion");
+				}
+			finally{
+				return devolver;
+					}			
+			}
 }
